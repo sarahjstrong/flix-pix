@@ -1,11 +1,13 @@
 <template>
-  <div class="home">
-    <h1>Home</h1>
-    <p>If you are seeing this, you are authenticated.</p>
-  </div>
+  <home-header></home-header>
+  <!--  -->
 </template>
 
 <script>
+import HomeHeader from '../components/HomeHeader.vue'
 export default {
+  components: {
+    HomeHeader
+  }
 };
 </script>
