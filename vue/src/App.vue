@@ -2,14 +2,18 @@
   <div id="capstone-app">
     <!-- Nav -->
     <header id="nav">
+    <header id="nav"> 
+
       <div class="logo">
         <img src="./assets/images/logo.png" alt="logo">
         </div>
         <div class="nav-links">
       <router-link class="nav-link home" v-bind:to="{ name: 'home' }">Home</router-link>
       <router-link class="nav-link browse" :to="{name: 'browse'}">Browse</router-link>
+      <router-link class="nav-link" :to="{name: 'recommended'}">Recommended</router-link>
       <router-link class="nav-link profile" :to="{name: 'profile'}">Profile</router-link>
         </div>
+
      <!-- This div will only be rendered if the token in the Vuex store is not an empty string -->
       <div v-if="this.$store.state.token != ''">
         <router-link class="nav-link" v-bind:to="{ name: 'logout' }">Logout</router-link>

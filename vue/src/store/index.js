@@ -1,5 +1,6 @@
 import { createStore as _createStore } from 'vuex';
 import axios from 'axios';
+import MovieService from '../services/MovieService';
 
 export function createStore(currentToken, currentUser) {
   let store = _createStore({
@@ -9,6 +10,56 @@ export function createStore(currentToken, currentUser) {
       genres: [],
       favorites: [],
       movies: [],
+      movies: [
+        {
+          title: "Example Movie",
+          director: "Director Name",
+          releaseYear: 2017,
+          rating: 4,
+          id: 1,
+          img: "//www.html.am/images/image-codes/milford_sound_t.jpg"
+        },
+        {
+          title: "Example Movie",
+          director: "Director Name",
+          releaseYear: 2017,
+          rating: 4,
+          id: 2,
+          img: "//www.html.am/images/image-codes/milford_sound_t.jpg"
+        },
+        {
+          title: "Example Movie",
+          director: "Director Name",
+          releaseYear: 2017,
+          rating: 4,
+          id: 3,
+          img: "//www.html.am/images/image-codes/milford_sound_t.jpg"
+        },
+        {
+          title: "Example Movie",
+          director: "Director Name",
+          releaseYear: 2017,
+          rating: 4,
+          id: 4,
+          img: "//www.html.am/images/image-codes/milford_sound_t.jpg"
+        },
+        {
+          title: "Example Movie",
+          director: "Director Name",
+          releaseYear: 2017,
+          rating: 4,
+          id: 5,
+          img: "//www.html.am/images/image-codes/milford_sound_t.jpg"
+        },
+        {
+          title: "Example Movie",
+          director: "Director Name",
+          releaseYear: 2017,
+          rating: 4,
+          id: 6,
+          img: "//www.html.am/images/image-codes/milford_sound_t.jpg"
+        }
+      ],
       filterBy : '',
       searchTerm: ''
     },
@@ -39,6 +90,11 @@ export function createStore(currentToken, currentUser) {
         state.favorites.add({
           movieId: movieId,
           user: state.user
+        })
+      },
+      ADD_MOVIES(state) {
+        MovieService.getMovies( response => {
+          state.movies = response.data;
         })
       }
     },
