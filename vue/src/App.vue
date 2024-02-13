@@ -24,9 +24,14 @@
   src: url(./assets/fonts/MontereyFLF.ttf);
 }
 
+@font-face {
+  font-family: 'roboto';
+  src: url(./assets/fonts/Roboto-Regular.ttf);
+}
+
 body{
   margin: 0;
-  font-family: 'mont';
+  font-family: 'roboto';
 
 }
 
@@ -44,7 +49,7 @@ body{
   color: rgb(0, 0, 0);
   margin: 0 20px;
   text-decoration: none;
-  font-size: 40px;
+  font-size: 35px;
   font-family: 'mont';
   
 }
@@ -54,6 +59,9 @@ body{
   justify-content: flex-end;
 }
 /* need to add logo */
+html {
+  background-color: #fff7dc;
 
+}
 
 </style>
