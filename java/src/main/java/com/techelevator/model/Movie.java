@@ -11,18 +11,20 @@ public class Movie {
     private int releaseYear;
 
 
-    private String genreId;
+    private int genreId;
+
+
 
     private Double rating;
 
 
     private String director;
 
-    public Movie(int movieId, String title, int releaseYear, String genreId, Double rating, String director) {
+    public Movie(int movieId, String title, int releaseYear, int genreId, Double rating, String director) {
         this.movieId = movieId;
         this.title = title;
         this.releaseYear = releaseYear;
-        this.genreId = genreId;
+        this.genreId=genreId;
         this.rating = rating;
         this.director = director;
     }
@@ -51,11 +53,11 @@ public class Movie {
         this.releaseYear = releaseYear;
     }
 
-    public String getGenreId() {
+    public int getGenreId() {
         return genreId;
     }
 
-    public void setGenreId(String genreId) {
+    public void setGenreId(int genreId) {
         this.genreId = genreId;
     }
 
