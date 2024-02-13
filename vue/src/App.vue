@@ -2,11 +2,14 @@
   <div id="capstone-app">
     <!-- Nav -->
     <header id="nav">
-      
-      <router-link class="nav-link" v-bind:to="{ name: 'home' }">Home</router-link>
-      <router-link class="nav-link" :to="{name: 'browse'}">Browse</router-link>
-      <router-link class="nav-link" :to="{name: 'profile'}">Profile</router-link>
-      
+      <div class="logo">
+        <img src="./assets/images/logo.png" alt="logo">
+        </div>
+        <div class="nav-links">
+      <router-link class="nav-link home" v-bind:to="{ name: 'home' }">Home</router-link>
+      <router-link class="nav-link browse" :to="{name: 'browse'}">Browse</router-link>
+      <router-link class="nav-link profile" :to="{name: 'profile'}">Profile</router-link>
+        </div>
      <!-- This div will only be rendered if the token in the Vuex store is not an empty string -->
       <div v-if="this.$store.state.token != ''">
         <router-link class="nav-link" v-bind:to="{ name: 'logout' }">Logout</router-link>
@@ -31,32 +34,57 @@
 
 body{
   margin: 0;
-  font-family: 'roboto';
+  font-family: 'roboto', 'mont';
 
 }
 
 #nav {
   background-color: #893222;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  padding-bottom: 10px;
   height: 100%;
-  margin: 0;
+  padding-left: 5px;
+  padding-bottom: 5px;
+}
+.nav-links {
+  display: flex;
+  justify-content: center; /* Center the items horizontally */
+  align-items: center;
 }
 
 .nav-link {
-  color: rgb(0, 0, 0);
-  margin: 0 20px;
+  color: #000000;
   text-decoration: none;
-  font-size: 35px;
+  font-size: 30px;
   font-family: 'mont';
-  
+  transition: transform 0.3s;
+  margin: 0 15px;
 }
 
+.nav-link.home:hover {
+  color: #dbbe4b;
+  transform: scale(1.2);
+}
+
+.nav-link.browse:hover {
+  color: #dbbe4b;
+  transform: scale(1.2);
+}
+
+.nav-link.profile:hover {
+  color: #dbbe4b;
+  transform: scale(1.2);
+}
+
+.nav-link.logout:hover {
+  color: #dbbe4b;
+  transform: scale(1.2);
+}
 .logo img {
-  width: 70px; 
-  justify-content: flex-end;
+  padding-left: 10%;
+  width: 35%;
+  height: 40%;
 }
 /* need to add logo */
 html {
