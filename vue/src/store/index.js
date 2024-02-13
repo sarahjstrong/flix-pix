@@ -7,11 +7,7 @@ export function createStore(currentToken, currentUser) {
       token: currentToken || '',
       user: currentUser || {},
       genres: [],
-<<<<<<< HEAD
       favorites: [],
-=======
-      // favorites: [];
->>>>>>> c66ecbd84b25fc7d2c3429ecbdff2f140c0747b9
       movies: [],
       filterBy : '',
       searchTerm: ''
