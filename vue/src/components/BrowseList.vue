@@ -30,6 +30,9 @@
                     return this.movies;
                 }
             }
+        },
+        created() {
+            this.$store.commit('ADD_MOVIES');
         }
     }
 </script>

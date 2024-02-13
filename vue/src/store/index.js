@@ -1,5 +1,6 @@
 import { createStore as _createStore } from 'vuex';
 import axios from 'axios';
+import MovieService from '../services/MovieService';
 
 export function createStore(currentToken, currentUser) {
   let store = _createStore({
@@ -7,11 +8,7 @@ export function createStore(currentToken, currentUser) {
       token: currentToken || '',
       user: currentUser || {},
       genres: [],
-<<<<<<< HEAD
       favorites: [],
-=======
-      // favorites: [];
->>>>>>> c66ecbd84b25fc7d2c3429ecbdff2f140c0747b9
       movies: [],
       filterBy : '',
       searchTerm: ''
@@ -43,6 +40,11 @@ export function createStore(currentToken, currentUser) {
         state.favorites.add({
           movieId: movieId,
           user: state.user
+        })
+      },
+      ADD_MOVIES(state) {
+        MovieService.getMovies( response => {
+          state.movies = response.data;
         })
       }
     },
