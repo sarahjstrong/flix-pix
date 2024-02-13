@@ -24,28 +24,24 @@ export default {
         movies() {
                 return this.$store.state.movies;
             },
-            filteredMovies() {
-                // const searchTerm = this.$store.state.searchTerm;
-                // const matchText = searchTerm.toLowerCase();
-                // const filterBy = this.$store.state.filterBy;
-                // if(filterBy === 'Director') {
-                //     return this.movies.filter( movie => {
-                //         return movie.director.toLowerCase().includes(matchText);
-                //     })
-                // } else if(filterBy === "Title") {
-                //     return this.movies.filter( movie => {
-                //         return movie.title.toLowerCase().includes(matchText);
-                //     })
-                // } else {
-                //     return this.movies;
-                // }
-                return this.$store.state.movies;
+        filteredMovies() {
+            const searchTerm = this.$store.state.searchTerm;
+            const matchText = searchTerm.toLowerCase();
+            const filterBy = this.$store.state.filterBy;
+            if(filterBy === 'Director') {
+                return this.movies.filter( movie => {
+                    return movie.director.toLowerCase().includes(matchText);
+                })
+            } else if(filterBy === "Title") {
+                return this.movies.filter( movie => {
+                    return movie.title.toLowerCase().includes(matchText);
+                })
+            } else {
+                return this.movies;
             }
-    },
+        }
+    }
     
-        // created() {
-        //     this.$store.commit('ADD_MOVIES');
-        // }
 }
 
 </script>
