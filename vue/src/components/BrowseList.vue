@@ -1,42 +1,24 @@
 <template>
-    <div class="card" v-for="curMovie in filteredMovies" v-bind:key="curMovie.id"></div>
-    <movie-card v-bind:movie="curMovie"></movie-card>
+    <movie-card class="card" v-for="(movie, index) in movies" v-bind:key=index v-bind:movie="movie"></movie-card>
 </template>
 
 <script>
     import MovieCard from './MovieCard.vue';
 
     export default {
+        props: ['movies'],
         components: {
             MovieCard
         },
-        computed: {
-            movies() {
-                return this.$store.state.movies;
-            },
-            filteredMovies() {
-                const searchTerm = this.$store.state.searchTerm;
-                const matchText = searchTerm.toLowerCase();
-                const filterBy = this.$store.state.filterBy;
-                if(filterBy === 'Director') {
-                    return this.movies.filter( movie => {
-                        return movie.director.toLowerCase().includes(matchText);
-                    })
-                } else if(filterBy === "Title") {
-                    return this.movies.filter( movie => {
-                        return movie.title.toLowerCase().includes(matchText);
-                    })
-                } else {
-                    return this.movies;
-                }
-            }
-        },
-        created() {
-            this.$store.commit('ADD_MOVIES');
-        }
+        
     }
 </script>
 
 <style scoped>
-
+    template {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: stretch;
+    }
 </style>
