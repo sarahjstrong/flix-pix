@@ -1,6 +1,8 @@
 package com.techelevator.dao;
 
+import com.techelevator.exception.DaoException;
 import com.techelevator.model.Movie;
+import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
@@ -18,13 +20,16 @@ public class JdbcMovieDao implements MovieDao{
     public List<Movie> getAllMovies() {
         String sql = "SELECT * FROM movies";
         List<Movie> movies = new ArrayList<>();
+        try{
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
         while (results.next()) {
-            
             movies.add(mapRowToMovie(results));
+
+        }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect", e);
         }
         return movies;
-
     }
 
 
@@ -43,34 +48,52 @@ public class JdbcMovieDao implements MovieDao{
 
     @Override
     public Movie getMovieById(int id) {
+        Movie movie = null;
         String sql = "SELECT * FROM movies WHERE movie_id = ?";
+        try{
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
         if (results.next()) {
-            return mapRowToMovie(results);
+            movie = mapRowToMovie(results);
         }
-        return null;
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect", e);
+        }
+        return movie;
     }
 
     @Override
     public Movie getMovieByName(String name) {
-        String sql = "SELECT * FROM movies WHERE title = ?";
+        Movie movie = null;
+        String sql = "SELECT * FROM movies WHERE title LIKE ?";
+        try{
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, name);
         if (result.next()) {
-            return mapRowToMovie(result);
+            movie= mapRowToMovie(result);}
+
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect", e);
         }
-        return null;
+        return movie;
     }
+
 
     @Override
     public List<Movie> getMoviesByGenre(String genre) {
-            String sql = "SELECT * FROM movies " +
-                    "JOIN genre ON movies.genre_id = genre.genre_id " +
-                    "WHERE genre.genre_name = ?";
+        String sql = "SELECT * FROM movies " +
+                "JOIN genre ON movies.genre_id = genre.genre_id " +
+                "WHERE genre.genre_name = ?";
+
+        List<Movie> movies = new ArrayList<>();
+
+        try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, genre);
-            List<Movie> movies = new ArrayList<>();
             while (results.next()) {
                 movies.add(mapRowToMovie(results));
             }
+
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect", e);
+        }
             return movies;
         }
 
@@ -79,15 +102,15 @@ public class JdbcMovieDao implements MovieDao{
     public List<Movie> getMoviesByRating(String rating) {
         String sql = "SELECT * FROM movies WHERE rating = ?";
 
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, rating);
-
-
         List<Movie> movies = new ArrayList<>();
 
-        while (results.next()) {
-            movies.add(mapRowToMovie(results));
-        }
+        try{
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, rating);
+            while (results.next()) {
+                movies.add(mapRowToMovie(results));
 
-        return movies;
-    }
-}
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect", e);
+        }
+        return movies;}}
