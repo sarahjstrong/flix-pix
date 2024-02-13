@@ -9,7 +9,7 @@
         <div class="nav-links">
       <router-link class="nav-link home" v-bind:to="{ name: 'home' }">Home</router-link>
       <router-link class="nav-link browse" :to="{name: 'browse'}">Browse</router-link>
-      <router-link class="nav-link" :to="{name: 'recommended'}">Recommended</router-link>
+      <router-link class="nav-link recommended" :to="{name: 'recommended'}">Recommended</router-link>
       <router-link class="nav-link profile" :to="{name: 'profile'}">Profile</router-link>
         </div>
 
@@ -44,54 +44,66 @@ body{
 #nav {
   background-color: #893222;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
   height: 100%;
-  padding-left: 5px;
   padding-bottom: 5px;
+  /* border-bottom: 2px solid #000000; */
+
 }
 .nav-links {
   display: flex;
-  justify-content: center; /* Center the items horizontally */
+  justify-content: center;
   align-items: center;
+  padding-left: 7;
+
+  
 }
 
 .nav-link {
-  color: #000000;
+  color: #dbbe4b;
   text-decoration: none;
   font-size: 30px;
   font-family: 'mont';
   transition: transform 0.3s;
-  margin: 0 15px;
+  margin: 0px 15px;
 }
 
 .nav-link.home:hover {
-  color: #dbbe4b;
+  color: #000000;
   transform: scale(1.2);
 }
 
 .nav-link.browse:hover {
-  color: #dbbe4b;
+  color: #000000;
   transform: scale(1.2);
 }
 
 .nav-link.profile:hover {
-  color: #dbbe4b;
+  color: #000000;
   transform: scale(1.2);
 }
 
 .nav-link.logout:hover {
-  color: #dbbe4b;
+  color: #000000;
   transform: scale(1.2);
 }
+
+.nav-link.recommended:hover {
+  color: #000000;
+  transform: scale(1.2);
+}
+
+
+
 .logo img {
-  padding-left: 10%;
-  width: 35%;
+  padding-left: 5%;
+  width: 35px;
   height: 40%;
 }
 /* need to add logo */
 html {
-  background-color: #fff7dc;
+  background-color: #893222;
 
 }
 
