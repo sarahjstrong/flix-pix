@@ -9,7 +9,7 @@ export function createStore(currentToken, currentUser) {
       user: currentUser || {},
       genres: [],
       favorites: [],
-      movies: [],
+      // movies: [],
       movies: [
         {
           title: "Example Movie",
