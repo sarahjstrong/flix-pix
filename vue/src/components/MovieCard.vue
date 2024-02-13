@@ -1,6 +1,6 @@
 <template>
     <div class="movie-card">
-        <h3 class="movie-title">{{ movie.title }}</h3>
+        <h2 class="movie-title">{{ movie.title }}</h2>
         <p class="movie-director">Dir. {{ movie.director }}</p>
         <p class="movie-year">r. {{ movie.releaseYear }}</p>
         <img class="movie-thumbnail" :src="movie.img" alt="">
@@ -37,12 +37,12 @@
         border-radius: 1%;
         align-items: center;
         justify-items: center;
-        flex: 1;
+        /* flex: 1; */
     }
 
     .movie-thumbnail{
-        height: 600px;
-        width: 400px;
+        height: 50%;
+        widows: 50%;
     }
 
     .info-btn{

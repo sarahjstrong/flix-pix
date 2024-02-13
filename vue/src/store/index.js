@@ -7,7 +7,8 @@ export function createStore(currentToken, currentUser) {
     state: {
       token: currentToken || '',
       user: currentUser || {},
-      genres: [],
+      favGenres: [],
+      favDirectors: [],
       favorites: [],
       movies: [
         {
