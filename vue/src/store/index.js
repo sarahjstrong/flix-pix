@@ -7,7 +7,7 @@ export function createStore(currentToken, currentUser) {
       token: currentToken || '',
       user: currentUser || {},
       genres: [],
-      favorites: [];
+      favorites: [],
       movies: [],
       filterBy : '',
       searchTerm: ''
@@ -34,6 +34,12 @@ export function createStore(currentToken, currentUser) {
       },
       SET_FILTER_BY(state, newFilter) {
         state.filterBy = newFilter;
+      },
+      ADD_MOVIE_TO_FAV(state, movieId) {
+        state.favorites.add({
+          movieId: movieId,
+          user: state.user
+        })
       }
     },
   });

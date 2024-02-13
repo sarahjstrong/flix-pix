@@ -5,6 +5,7 @@
       
       <router-link class="nav-link" v-bind:to="{ name: 'home' }">Home</router-link>
       <router-link class="nav-link" :to="{name: 'browse'}">Browse</router-link>
+      <router-link class="nav-link" :to="{name: 'recommended'}">Recommended</router-link>
       <router-link class="nav-link" :to="{name: 'profile'}">Profile</router-link>
       
      <!-- This div will only be rendered if the token in the Vuex store is not an empty string -->
