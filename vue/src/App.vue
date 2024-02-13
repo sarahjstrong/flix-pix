@@ -1,7 +1,7 @@
 <template>
   <div id="capstone-app">
     <!-- Nav -->
-    <header id="nav"> 
+    <header id="nav">
 
       <div class="logo">
         <img src="./assets/images/logo.png" alt="logo">

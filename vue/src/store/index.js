@@ -10,6 +10,7 @@ export function createStore(currentToken, currentUser) {
       favGenres: [],
       favDirectors: [],
       favorites: [],
+      // movies: [],
       movies: [
         {
           title: "Example Movie",
