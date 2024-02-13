@@ -17,7 +17,7 @@ import java.util.List;
 
 public class MovieController {
 
-
+@Autowired
     private MovieDao movieDao;
 
     @RequestMapping(path = "/all-movies", method = RequestMethod.GET)
