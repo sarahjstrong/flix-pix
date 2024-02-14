@@ -7,17 +7,17 @@
       </div>
 
       <div class="form-input-group">
-        <label for="username">Username:</label><br> <!-- Add line break to move labels above -->
+        <label for="username">Username:</label><br> 
         <input type="text" id="username" v-model="user.username" required autofocus />
       </div>
 
       <div class="form-input-group">
-        <label for="password">Password:</label><br> <!-- Add line break to move labels above -->
+        <label for="password">Password:</label><br> 
         <input type="password" id="password" v-model="user.password" required />
       </div>
 
       <div class="form-input-group">
-        <label for="confirmPassword">Confirm Password:</label><br> <!-- Add line break to move labels above -->
+        <label for="confirmPassword">Confirm Password:</label><br> 
         <input type="password" id="confirmPassword" v-model="user.confirmPassword" required />
       </div>
 
@@ -25,7 +25,9 @@
       <p class="link"><router-link v-bind:to="{ name: 'login' }">Already have an account? Log in.</router-link></p>
     </form>
     <div class="overlay-card">
+      <!-- <img src="@/assets/images/horizontallogo.png" class="logo" alt="Logo">  -->
       <!-- Content of the overlaying card goes here -->
+      <p class="quote">Unlock A World A Movie Magic</p>
     </div>
   </div>
 </template>
@@ -81,23 +83,18 @@ export default {
 
 <style scoped>
 #register {
-  position: relative; /* Make the position relative to enable absolute positioning of the overlaying card */
-  border: 5px solid #dbdbdb; 
+  position: relative; 
+  background-color: #dbdbdb;
   border-radius: 7px;
-  background-color: rgb(255, 252, 244);
   max-width: 800px; 
   max-height: 800px;
   margin: auto; 
-  padding: 30px 10px 60px 10px; /* Adjust padding to add more space to the right */
+  padding: 40px 10px 60px 10px; 
   box-sizing: border-box;
   box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.1);
-  margin-top: 50px; /* Adjust the top margin to lower the position */
+  margin-top: 50px; 
 }
 
-
-
-
-/* Add styles for the overlaying card, gonna add some nice touches*/
 .overlay-card {
   position: absolute;
   top: 50%; 
@@ -107,9 +104,17 @@ export default {
   height: 50%; 
   border: 2px solid #ccc;
   border-radius: 5px;
-  background-color: #fff;
-  padding: 20px 10px 210px 10px;
+  background: url('@/assets/images/popcorn.jpg') no-repeat center center; 
+  background-size: cover; 
+  padding: 20px 0px 210px 8px;
 }
+
+/* .logo {
+  position: absolute;
+  top: 20px; 
+  left: 20px; 
+  width: 150px; 
+} */
 
 .form-input-group {
   margin-bottom: 1rem;
@@ -137,11 +142,23 @@ export default {
   transform: scale(1.2);
 }
 
-.link:hover {  
+/* .link:hover {  
   color: #893222;
   text-decoration: underline;
   transition: transform 0.3s;
   transform: scale(1.1);
+} */
+
+.quote{
+  font-size: 20px;
+  font-family: 'mont';
+  color: #000000;
+  text-shadow: 4px 4px 4px #000000;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  margin-left: 35px;
+
 }
 
 label {
