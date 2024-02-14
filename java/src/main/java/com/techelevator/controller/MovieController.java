@@ -1,13 +1,12 @@
 package com.techelevator.controller;
 
 import com.techelevator.dao.MovieDao;
+import com.techelevator.model.ImdbIdDto;
 import com.techelevator.model.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,6 +24,15 @@ public class MovieController {
     @RequestMapping(path = "/all-movies", method = RequestMethod.GET)
     public List<Movie> getAllMovies() {
         return movieDao.getAllMovies();
+    }
+
+
+
+    @ResponseStatus(code = HttpStatus.CREATED, reason = "Successfully added movie to database")
+    @PostMapping(path = "api/movies/call_api")
+    public int addMovieFromAPI(@RequestBody ImdbIdDto imdbId) {
+        int returnedId = movieDao.addMovieFromAPI(imdbId.getImdbId());
+        return returnedId;
     }
 
 }

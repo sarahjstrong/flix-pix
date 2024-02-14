@@ -20,14 +20,22 @@
                 return this.$store.state.movies;
             },
             userGenres() {
-                return this.$store.state.favGenres;
+                return this.$store.state.genres;
+            },
+            userDirectors() {
+                return this.$store.state.directors;
             },
             filteredMovies() {
-                let mergedList;
+                let mergedList =[];
                 this.userGenres.forEach(curGenre => {
                     const moviesForCurGenre = MovieService.getMoviesByGenre(curGenre);
                     mergedList = mergedList.concat(moviesForCurGenre);
                 });
+
+                this.userDirectors.forEach(curDirector => {
+                    const moviesForCurDirector = MovieService.getMoviesByDirector(curDirector);
+                    mergedList = mergedList.concat(moviesForCurDirector);
+                })
 
                 const favoritedMovies = this.$store.state.favorites;
                 return mergedList.filter(curMovie => {

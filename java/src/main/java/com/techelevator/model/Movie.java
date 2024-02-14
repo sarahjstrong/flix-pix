@@ -14,11 +14,14 @@ public class Movie {
     private int genreId;
 
 
-
     private Double rating;
 
 
     private String director;
+
+    private String imdbID;
+
+    private String poster;
 
     public Movie(int movieId, String title, int releaseYear, int genreId, Double rating, String director) {
         this.movieId = movieId;
@@ -27,6 +30,22 @@ public class Movie {
         this.genreId=genreId;
         this.rating = rating;
         this.director = director;
+    }
+
+    public String getImdbID() {
+        return imdbID;
+    }
+
+    public void setImdbID(String imdbID) {
+        this.imdbID = imdbID;
+    }
+
+    public String getPoster() {
+        return poster;
+    }
+
+    public void setPoster(String poster) {
+        this.poster = poster;
     }
 
     public int getMovieId() {

@@ -114,4 +114,11 @@ public class JdbcMovieDao implements MovieDao{
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect", e);
         }
-        return movies;}}
+        return movies;}
+
+    @Override
+    public int addMovieFromAPI(String imdbId) {
+        return 0;
+
+    }
+}
