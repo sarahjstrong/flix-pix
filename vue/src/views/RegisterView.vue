@@ -19,7 +19,7 @@
         <input type="password" id="confirmPassword" v-model="user.confirmPassword" required />
       </div></h4>
       <button class="submit-btn" type="submit">Create Account</button>
-      <p><router-link v-bind:to="{ name: 'login' }">Already have an account? Log in.</router-link></p>
+      <p class="link"><router-link v-bind:to="{ name: 'login' }">Already have an account? Log in.</router-link></p>
     </form>
   </div>
 </template>
@@ -127,6 +127,15 @@ export default {
 .submit-btn:hover {
         background-color: #6d271b;
         transform: scale(1.2);
+}
+
+.link:hover{  
+  color: #893222;
+  text-decoration: underline;
+  transition: transform 0.3s;
+  transform: scale(1.1);
+
+
 }
 
 
