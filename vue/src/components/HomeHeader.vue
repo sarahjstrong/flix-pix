@@ -53,11 +53,11 @@
     .title-text {
         font-size: 5em;
         color: #dbbe4b ;
-        /* text-shadow: 2px 2px 2px #dbbe4b; */
+        /* text-shadow: 2px 2px 2px #000000; */
         text-align: center;
         font-family: 'mont';
-        padding-top: 20%; /* Adjusted padding-top value */
-        background: linear-gradient(to right, #ffffff, #dbbe4b,  #000000, #dbbe4b );
+        padding-top: 30%; /* Adjusted padding-top value */
+        background: linear-gradient(to right, #ffffff, #dbbe4b,  #fefefe, #dbbe4b );
         background-size: 200% 100%;
         animation: gradientMove 3s linear infinite;
         -webkit-background-clip: text;
