@@ -1,26 +1,32 @@
 <template>
-  <div id="register" class="text-center">
+  <div id="register" class="text-left"> <!-- Align everything to the left -->
     <form v-on:submit.prevent="register">
       <h1 style="font-family: 'mont'; text-decoration: underline;">Create Account</h1>
       <div role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
 
-      <h3><div class="form-input-group">
-        <label for="username">Username:</label>
+      <div class="form-input-group">
+        <label for="username">Username:</label><br> <!-- Add line break to move labels above -->
         <input type="text" id="username" v-model="user.username" required autofocus />
-      </div></h3>
-     <h3> <div class="form-input-group">
-        <label for="password">Password:</label>
+      </div>
+
+      <div class="form-input-group">
+        <label for="password">Password:</label><br> <!-- Add line break to move labels above -->
         <input type="password" id="password" v-model="user.password" required />
-      </div></h3>
-     <h4> <div class="form-input-group">
-        <label for="confirmPassword">Confirm Password:</label>
+      </div>
+
+      <div class="form-input-group">
+        <label for="confirmPassword">Confirm Password:</label><br> <!-- Add line break to move labels above -->
         <input type="password" id="confirmPassword" v-model="user.confirmPassword" required />
-      </div></h4>
+      </div>
+
       <button class="submit-btn" type="submit">Create Account</button>
       <p class="link"><router-link v-bind:to="{ name: 'login' }">Already have an account? Log in.</router-link></p>
     </form>
+    <div class="overlay-card">
+      <!-- Content of the overlaying card goes here -->
+    </div>
   </div>
 </template>
 
@@ -74,71 +80,69 @@ export default {
 </script>
 
 <style scoped>
-@font-face {
-  font-family: 'mont';
-  src: url(../assets/fonts/MontereyFLF.ttf);
-}
-
-@font-face {
-  font-family: 'roboto';
-  src: url(../assets/fonts/Roboto-Regular.ttf);
-}
-
-
-
-
 #register {
+  position: relative; /* Make the position relative to enable absolute positioning of the overlaying card */
   border: 5px solid #dbdbdb; 
   border-radius: 7px;
   background-color: rgb(255, 252, 244);
-  max-width: 400px; 
-  max-height: 700px; 
+  max-width: 800px; 
+  max-height: 800px;
   margin: auto; 
-  text-align: center;
-  padding: 20px; 
+  padding: 30px 10px 60px 10px; /* Adjust padding to add more space to the right */
   box-sizing: border-box;
   box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.1);
-
+  margin-top: 50px; /* Adjust the top margin to lower the position */
 }
+
+
+
+
+/* Add styles for the overlaying card, gonna add some nice touches*/
+.overlay-card {
+  position: absolute;
+  top: 50%; 
+  right: 0; 
+  transform: translateY(-50%); 
+  width: 50%; 
+  height: 50%; 
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 20px 10px 210px 10px;
+}
+
 .form-input-group {
   margin-bottom: 1rem;
-  font-size: 15px;
-
 }
 
-.submit-btn{
-        font-size: 1.1em;
-        font-family: 'mont';
-        padding: 5px 10px;
-        margin: 10px;
-        background-color: #893222;
-        color: #dbbe4b;
-        border: none;
-        cursor: pointer;
-        border-radius: 50px;
-        outline: none;
-        cursor: pointer;
-        position: relative;
-        box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-        transition: transform 0.3s;
+.submit-btn {
+  font-size: 1.1em;
+  font-family: 'mont';
+  padding: 10px 20px;
+  margin: 10px;
+  background-color: #893222;
+  color: #dbbe4b;
+  border: none;
+  cursor: pointer;
+  border-radius: 50px;
+  outline: none;
+  position: relative;
+  box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s;
 }
 
 .submit-btn:hover {
-        background-color: #6d271b;
-        transform: scale(1.2);
+  background-color: #6d271b;
+  transform: scale(1.2);
 }
 
-.link:hover{  
+.link:hover {  
   color: #893222;
   text-decoration: underline;
   transition: transform 0.3s;
   transform: scale(1.1);
-
-
 }
-
-
 
 label {
   margin-right: 0.5rem;

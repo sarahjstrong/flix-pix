@@ -57,9 +57,9 @@
         text-align: center;
         font-family: 'mont';
         padding-top: 30%; /* Adjusted padding-top value */
-        background: linear-gradient(to right, #ffffff, #dbbe4b,  #fefefe, #dbbe4b );
+        background: linear-gradient(to right, #ffffff, #dbbe4b,  #ffffff, #dbbe4b );
         background-size: 200% 100%;
-        animation: gradientMove 3s linear infinite;
+        animation: gradientMove 2s linear infinite;
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent; 
