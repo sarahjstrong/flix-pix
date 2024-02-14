@@ -7,8 +7,10 @@ export function createStore(currentToken, currentUser) {
     state: {
       token: currentToken || '',
       user: currentUser || {},
-      genres: [],
+      favGenres: [],
+      favDirectors: [],
       favorites: [],
+      // movies: [],
       movies: [],
       filterBy : '',
       searchTerm: ''
@@ -51,3 +53,53 @@ export function createStore(currentToken, currentUser) {
   });
   return store;
 }
+
+
+// {
+//   title: "Example Movie",
+//   director: "Director Name",
+//   releaseYear: 2017,
+//   rating: 4,
+//   id: 1,
+//   img: "//www.html.am/images/image-codes/milford_sound_t.jpg"
+// },
+// {
+//   title: "Example Movie",
+//   director: "Director Name",
+//   releaseYear: 2017,
+//   rating: 4,
+//   id: 2,
+//   img: "//www.html.am/images/image-codes/milford_sound_t.jpg"
+// },
+// {
+//   title: "Example Movie",
+//   director: "Director Name",
+//   releaseYear: 2017,
+//   rating: 4,
+//   id: 3,
+//   img: "//www.html.am/images/image-codes/milford_sound_t.jpg"
+// },
+// {
+//   title: "Example Movie",
+//   director: "Director Name",
+//   releaseYear: 2017,
+//   rating: 4,
+//   id: 4,
+//   img: "//www.html.am/images/image-codes/milford_sound_t.jpg"
+// },
+// {
+//   title: "Example Movie",
+//   director: "Director Name",
+//   releaseYear: 2017,
+//   rating: 4,
+//   id: 5,
+//   img: "//www.html.am/images/image-codes/milford_sound_t.jpg"
+// },
+// {
+//   title: "Example Movie",
+//   director: "Director Name",
+//   releaseYear: 2017,
+//   rating: 4,
+//   id: 6,
+//   img: "//www.html.am/images/image-codes/milford_sound_t.jpg"
+// }

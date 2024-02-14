@@ -18,6 +18,9 @@ public class MovieController {
 @Autowired
     private MovieDao movieDao;
 
+    public MovieController(MovieDao movieDao) {
+        this.movieDao = movieDao;}
+
     @RequestMapping(path = "/all-movies", method = RequestMethod.GET)
     public List<Movie> getAllMovies() {
         return movieDao.getAllMovies();
