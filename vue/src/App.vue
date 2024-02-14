@@ -9,13 +9,14 @@
         <div class="nav-links">
       <router-link class="nav-link home" v-bind:to="{ name: 'home' }">Home</router-link>
       <router-link class="nav-link browse" :to="{name: 'browse'}">Browse</router-link>
-      <router-link class="nav-link recommended" :to="{name: 'recommended'}">Recommended</router-link>
-      <router-link class="nav-link profile" :to="{name: 'profile'}">Profile</router-link>
+  
         </div>
 
      <!-- This div will only be rendered if the token in the Vuex store is not an empty string -->
       <div v-if="this.$store.state.token != ''">
-        <router-link class="nav-link" v-bind:to="{ name: 'logout' }">Logout</router-link>
+          <router-link class="nav-link recommended" :to="{name: 'recommended'}">Recommended</router-link>
+          <router-link class="nav-link profile" :to="{name: 'profile'}">Profile</router-link>
+          <router-link class="nav-link" v-bind:to="{ name: 'logout' }">Logout</router-link>
       </div>
       
     </header>
@@ -63,34 +64,34 @@ body{
 .nav-link {
   color: #dbbe4b;
   text-decoration: none;
-  font-size: 30px;
+  font-size: 25px;
   font-family: 'mont';
   transition: transform 0.3s;
   margin: 0px 15px;
 }
 
 .nav-link.home:hover {
-  color: #000000;
+  color: #212121;
   transform: scale(1.2);
 }
 
 .nav-link.browse:hover {
-  color: #000000;
+  color: #212121;
   transform: scale(1.2);
 }
 
 .nav-link.profile:hover {
-  color: #000000;
+  color: #212121;
   transform: scale(1.2);
 }
 
 .nav-link.logout:hover {
-  color: #000000;
+  color: #212121;
   transform: scale(1.2);
 }
 
 .nav-link.recommended:hover {
-  color: #000000;
+  color: #212121;
   transform: scale(1.2);
 }
 
