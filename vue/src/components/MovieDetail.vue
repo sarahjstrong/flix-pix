@@ -34,16 +34,6 @@
             }
         },
         methods: {
-            getRating() {
-                // Make call to rating service to get object for user rating for current movie
-                // if(!response.data === null) {
-                //     const userRatingObject = response.data;
-                //     this.userRated = true;
-                // } else {
-                //     this.userRated = false;
-                // }
-                return null;
-            },
             favoriteMovie() {
                 if(this.$store.state.token != '') {
                     if(this.favoriteStatus === 'Favorite') {
