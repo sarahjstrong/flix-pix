@@ -7,10 +7,10 @@ export function createStore(currentToken, currentUser) {
     state: {
       token: currentToken || '',
       user: currentUser || {},
-      favGenres: [],
-      favDirectors: [],
+      genres: [],
+      directors: [],
       favorites: [],
-      // movies: [],
+      friends: [],
       movies: [],
       filterBy : '',
       searchTerm: ''
@@ -44,11 +44,22 @@ export function createStore(currentToken, currentUser) {
           user: state.user
         })
       },
-      ADD_MOVIES(state) {
+      UPLOAD_MOVIES(state) {
         MovieService.getMovies( response => {
           state.movies = response.data;
         })
-      }
+      },
+      UPLOAD_USER_DATA(state) {
+        // Call to receive all user data and reassign user (this will include bio, location, etc)
+        // Call receive all fav genres from table
+        // Call to receive all fav directors from table
+        // Call to receive all favorite movie from table
+        // Call to receive all friends from the table
+      },
+      ADD_DIRECTOR(state, directorsToAdd) {
+        // Call user-director service to save the directors into database
+      },
+
     },
   });
   return store;

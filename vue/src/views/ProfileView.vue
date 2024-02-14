@@ -1,85 +1,53 @@
 <template>
+
+  <!-- To properly make this page items within a flex box, we should make the profile card and profile form separate components that are used in the profile view -->
     <div class="container">
-    <div v-if="!editMode" class="profile-card">
-      
-      <div class="profileShown">
-        <h2 style="text-decoration: underline; font-family:'mont';">Profile</h2>
-        <p style="font-family: 'roboto';"><strong>Username:</strong> {{ username }}</p>
-        <p style="font-family: 'roboto';"><strong>Email:</strong> {{ email }}</p>
-        <p style="font-family: 'roboto';"><strong>Password:</strong> ********</p>
-        <p style="font-family: 'roboto';"><strong>Genres:</strong></p>
-        <ul>
-          <li v-for="genre in selectedGenres" :key='genre.id'>{{ genre.name }}</li>
-        </ul>
-        <p><strong>Favorite Director:</strong> {{ director }}</p>
-        <button @click="editMode = true">Edit</button>
+      <div v-if="!editMode" class="profile-info">
+        <div class="profileShown">
+          <profile-info v-bind:user="this.$store.state.user"></profile-info>
+          <button @click="editMode = true">Edit</button>
+        </div>
       </div>
-    </div>
-      <div v-else>
-        <form class="profile-form">
-          <h2>Edit Profile</h2>
-          <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" id="username" v-model="username">
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" v-model="email">
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" v-model="password">
-          </div>
-          <div class="form-group">
-            <label for="genres">Genres</label>
-            <div class="genre-checkboxes">
-              <div v-for="genre in genres" :key="genre.id">
-                <input type="checkbox" :id="genre.id" :value="genre" v-model="selectedGenres">
-                <label :for="genre.id">{{ genre.name }}</label>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="director">Favorite Director</label>
-            <input type="text" id="director" v-model="director">
-          </div>
-          <button @click="saveChanges">Save</button>
-          <button @click="cancelEdit">Cancel</button>
-        </form>
+      <div v-else class="profile-info">
+        <edit-profile-form></edit-profile-form>
       </div>
+
+    <div class="profile-favs">
+      <favorites-list></favorites-list>
     </div>
+
+    <div class="profile-friends">
+      <friends-list></friends-list>
+    </div>
+
+  </div>
+
   </template>
   
   <script>
+  import FavoritesList from '../components/FavoritesList.vue'
+  import ProfileInfo from '../components/ProfileInfo.vue';
+  import EditProfileForm from '../components/EditProfileForm.vue'
+  import FriendsList from '../components/FriendsList.vue';
+
   export default {
     data() {
       return {
         editMode: false,
-        username: '',
-        email: '',
-        password: '',
-        genres: [
-          { id: 1, name: 'Action' },
-          { id: 2, name: 'Comedy' },
-          { id: 3, name: 'Drama' },
-          { id: 4, name: 'Horror' },
-          { id: 5, name: 'Sci-Fi' },
-          { id: 6, name: 'Thriller' }
-        ],
-        selectedGenres: [],
-        director: ''
+        username: this.$store.state.username,
+
       }
     },
+    components: {
+      FavoritesList,
+      ProfileInfo,
+      EditProfileForm,
+      FriendsList
+    },
     methods: {
-      saveChanges() {
-        // Save changes to the backend here
-        this.editMode = false; //exit
-      },
-      cancelEdit() {
-        // Reset form fields to original values
-        this.editMode = false; 
-      }
+
     }
+
   }
   </script>
   
@@ -94,22 +62,54 @@
     }
      
     .container {
-     display: flex;
-     justify-content: center;
+      height: 100vh;
+     display: grid;
+     grid-template-columns: 1fr, 1fr, 1fr;
+     grid-template-rows: 1fr, 1fr, 1fr;
+     grid-template-areas:
+     "info info friends"
+     "info info friends"
+     "fav fav fav"
+     ;
+     justify-items: center;
     align-items: center; 
-    height: 100vh; 
+    height: 100vh;
+    margin: 100px;
 }
-    .profile-card {
+    .profile-favs {
+      grid-area: fav;
     border: 5px solid #dbdbdb;
-    background-color: aliceblue;
+    background-color: rgb(255, 252, 244);
     border-radius: 7px;
-    width: 300px;
-    height: 350px;
+    width: 100%;
+    height: 100%;
     box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.1);
+    text-align: center
     }
-    .profileShown {
-        text-align: center; 
+
+    .profile-info {
+      grid-area: info;
+    border: 5px solid #dbdbdb;
+    background-color: rgb(255, 252, 244);
+    border-radius: 7px;
+    width: 100%;
+    height: 100%;
+    box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.1);
+
+    text-align: center
     }
+
+    .profile-friends {
+      grid-area: friends;
+    border: 5px solid #dbdbdb;
+    background-color: rgb(255, 252, 244);
+    border-radius: 7px;
+    width: 100%;
+    height: 100%;
+    box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.1);
+    text-align: center
+    }
+
 
     </style>
     

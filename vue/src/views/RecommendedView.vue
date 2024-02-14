@@ -23,7 +23,7 @@
                 return this.$store.state.favGenres;
             },
             filteredMovies() {
-                let mergedList;
+                let mergedList =[];
                 this.userGenres.forEach(curGenre => {
                     const moviesForCurGenre = MovieService.getMoviesByGenre(curGenre);
                     mergedList = mergedList.concat(moviesForCurGenre);

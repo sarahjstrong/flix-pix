@@ -5,10 +5,13 @@
 
       <div class="logo">
         <img src="./assets/images/logo.png" alt="logo">
-        </div>
-        <div class="nav-links">
+      </div>
+
+      <div class="nav-links">
       <router-link class="nav-link home" v-bind:to="{ name: 'home' }">Home</router-link>
       <router-link class="nav-link browse" :to="{name: 'browse'}">Browse</router-link>
+
+
   
         </div>
 
