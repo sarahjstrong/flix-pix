@@ -97,7 +97,7 @@
     height: 100%;
     max-width: 550px;
     max-height: 550px;
-    box-shadow: 20px 20px 20px 80rgba(0, 0, 0, 0.1);
+    box-shadow: 20px 20px 20px  rgba(0, 0, 0, 0.1);
     margin-right: 25%;
     margin-bottom: 70px;
     text-align: center
