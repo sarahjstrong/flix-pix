@@ -1,26 +1,32 @@
 <template>
   <div id="capstone-app">
+
+
     <!-- Nav -->
     <header id="nav">
-
       <div class="logo">
         <img src="./assets/images/logo.png" alt="logo">
       </div>
 
-      <div class="nav-links">
-      <router-link class="nav-link home" v-bind:to="{ name: 'home' }">Home</router-link>
-      <router-link class="nav-link browse" :to="{name: 'browse'}">Browse</router-link>
+      <div class="all-nav-links">
 
-
-  
+        <div class="left-nav-links">
+          <router-link class="nav-link home" v-bind:to="{ name: 'home' }">Home</router-link>
+          <router-link class="nav-link browse" :to="{name: 'browse'}">Browse</router-link>
+          <!-- !-- This div will only be rendered if the token in the Vuex store is not an empty string -->
+            <router-link v-if="this.$store.state.token != ''" class="nav-link recommended" :to="{name: 'recommended'}">Recommended</router-link>
         </div>
 
-     <!-- This div will only be rendered if the token in the Vuex store is not an empty string -->
-      <div v-if="this.$store.state.token != ''">
-          <router-link class="nav-link recommended" :to="{name: 'recommended'}">Recommended</router-link>
+
+
+      <div v-if="this.$store.state.token != ''" class="right-nav-links">
           <router-link class="nav-link profile" :to="{name: 'profile'}">Profile</router-link>
-          <router-link class="nav-link" v-bind:to="{ name: 'logout' }">Logout</router-link>
+          <router-link class="nav-link logout" v-bind:to="{ name: 'logout' }">Logout</router-link>
       </div>
+  
+      </div>
+
+
       
     </header>
   
@@ -46,23 +52,23 @@ body{
 }
 
 #nav {
-  background-color: #893222;
   display: flex;
+  background-color: #893222;
   /* justify-content: space-between; */
   align-items: center;
   height: 100%;
   padding-bottom: 5px;
   /* border-bottom: 2px solid #000000; */
-
 }
-.nav-links {
+
+.all-nav-links{
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-left: 7;
-
-  
+  flex-grow: 1;
+  justify-content: space-between;
 }
+
+
+
 
 .nav-link {
   color: #dbbe4b;
@@ -105,6 +111,7 @@ body{
   width: 35px;
   height: 40%;
 }
+
 /* need to add logo */
 html {
   background-color: #893222;
