@@ -84,7 +84,8 @@
     width: 100%;
     height: 100%;
     box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.1);
-    text-align: center
+    text-align: center;
+    margin-top: 40px
     }
 
     .profile-info {
@@ -94,8 +95,11 @@
     border-radius: 7px;
     width: 100%;
     height: 100%;
-    box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.1);
-
+    max-width: 550px;
+    max-height: 550px;
+    box-shadow: 20px 20px 20px 80rgba(0, 0, 0, 0.1);
+    margin-right: 25%;
+    margin-bottom: 70px;
     text-align: center
     }
 
@@ -107,7 +111,9 @@
     width: 100%;
     height: 100%;
     box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.1);
-    text-align: center
+    text-align: center;
+    margin-bottom: 70px
+
     }
     
 /* tweaked btn */
