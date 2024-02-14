@@ -26,6 +26,8 @@ public class MovieController {
         return movieDao.getAllMovies();
     }
 
+
+
     @ResponseStatus(code = HttpStatus.CREATED, reason = "Successfully added movie to database")
     @PostMapping(path = "api/movies/call_api")
     public int addMovieFromAPI(@RequestBody ImdbIdDto imdbId) {
