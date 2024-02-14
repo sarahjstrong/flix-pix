@@ -5,7 +5,7 @@
       <div v-if="!editMode" class="profile-info">
         <div class="profileShown">
           <profile-info v-bind:user="this.$store.state.user"></profile-info>
-          <button @click="editMode = true">Edit</button>
+          <button class= "edit-btn" @click="editMode = true" >Edit</button>
         </div>
       </div>
       <div v-else class="profile-info">
@@ -109,6 +109,30 @@
     box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.1);
     text-align: center
     }
+    
+/* tweaked btn */
+    .edit-btn{
+        font-size: 1.2em;
+        font-family: 'mont';
+        padding: 5px 10px;
+        margin: 10px;
+        background-color: #893222;
+        color: #dbbe4b;
+        border: none;
+        cursor: pointer;
+        border-radius: 50px;
+        outline: none;
+        cursor: pointer;
+        position: relative;
+        box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s;
+}
+
+.edit-btn:hover {
+        background-color: #6d271b;
+        transform: scale(1.2);  
+      }
 
 
     </style>
