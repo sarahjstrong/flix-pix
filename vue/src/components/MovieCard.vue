@@ -1,11 +1,12 @@
 <template>
-    <div class="movie-card">
-        <h2 class="movie-title">{{ movie.title }}</h2>
-        <p class="movie-director">Dir. {{ movie.director }}</p>
-        <p class="movie-year">r. {{ movie.releaseYear }}</p>
+    <router-link :to="{ name: 'movie', params: { movieId:movie.id } }">
+        <div class="movie-card">
+            <h2 class="movie-title">{{ movie.title }}</h2>
+            <p class="movie-director">Dir. {{ movie.director }}</p>
+            <p class="movie-year">r. {{ movie.releaseYear }}</p>
         <img class="movie-thumbnail" :src="movie.img" alt="">
-        <button class="info-btn" v-on:click="moreInfo">More info</button>
     </div>
+    </router-link>
 
 
 </template>

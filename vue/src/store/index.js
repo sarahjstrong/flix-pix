@@ -39,10 +39,10 @@ export function createStore(currentToken, currentUser) {
         state.filterBy = newFilter;
       },
       ADD_MOVIE_TO_FAV(state, movieId) {
-        state.favorites.add({
-          movieId: movieId,
-          user: state.user
-        })
+        // Call to favorite service and add movie to favorites
+      },
+      DELETE_MOVIE_FROM_FAV(state, movieId) {
+        // Call to favorite service and delete movie from favorites
       },
       UPLOAD_MOVIES(state) {
         MovieService.getMovies( response => {

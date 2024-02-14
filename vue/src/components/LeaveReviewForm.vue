@@ -1,12 +1,9 @@
 <template>
-<s></s>
+    <form action="submit" class="review-form"></form>
 </template>
 
 <script>
-    export default {
-        
-    
-    }
+
 </script>
 
 <style scoped>
