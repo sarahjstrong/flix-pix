@@ -6,12 +6,15 @@ import java.util.List;
 
 public interface MovieDao {
 
-   public List<Movie> getAllMovies();
+    public List<Movie> getAllMovies();
 
-   public Movie getMovieById(int id);
-   public Movie getMovieByName(String name);
+    public Movie getMovieById(int id);
+    public Movie getMovieByName(String name);
 
     public List<Movie> getMoviesByGenre(String genre) ;
 
     public List<Movie> getMoviesByRating(String rating);
+
+    int addMovieFromAPI(String imdbId);
 }
+
