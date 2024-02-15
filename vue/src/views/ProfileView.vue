@@ -92,11 +92,11 @@
       grid-area: info;
     border: 5px solid #dbdbdb;
     background-color: rgb(255, 252, 244);
-    border-radius: 7px;
+    border-radius: 2vh;
     width: 100%;
     height: 100%;
-    max-width: 550px;
-    max-height: 550px;
+    max-width: 88vh;
+    max-height: 500vh;
     box-shadow: 20px 20px 20px  rgba(0, 0, 0, 0.1);
     margin-right: 25%;
     margin-bottom: 70px;
