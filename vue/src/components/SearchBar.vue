@@ -36,17 +36,19 @@ export default {
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        margin-top: 40px;
+        margin-top: 25px;
     }
     .search-bar {
         width: 400px;
         height: 30px;
         font-size: 16px;
         margin-left: 10px;
+        background-color: #fff6d7
     }
     .select-filter {
         height: 36px;
         font-size: 16px;
+        background-color: #fff6d7;
     }
 
 </style>

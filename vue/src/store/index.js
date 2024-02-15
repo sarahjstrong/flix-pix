@@ -12,6 +12,7 @@ export function createStore(currentToken, currentUser) {
       favorites: [],
       friends: [],
       movies: [],
+      apiMovies: [],
       filterBy : '',
       searchTerm: ''
     },
@@ -48,6 +49,9 @@ export function createStore(currentToken, currentUser) {
         MovieService.getMovies( response => {
           state.movies = response.data;
         })
+      },
+      ADD_MOVIES_FROM_API(state) {
+        //
       },
       UPLOAD_USER_DATA(state) {
         // Call to receive all user data and reassign user (this will include bio, location, etc)

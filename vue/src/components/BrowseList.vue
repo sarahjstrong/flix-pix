@@ -20,12 +20,21 @@
 <style scoped>
     .card-list {
         display: flex;
-        flex-direction: row;
+        border: 5px solid #fff6d7; 
+        border-radius: 7px;
+        background-color: #fff6d7;
+        margin: 50px; 
+        text-align: center;
+        padding: 20px; 
+        box-sizing: border-box;
+        box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.1);
         flex-wrap: wrap;
-        align-items: stretch;
+        justify-content: space-around;
+
     }
 
-    .movie-card{
-        
-    }
+
+
+
+
 </style>

@@ -1,5 +1,6 @@
 <template>
     <div class="search-bar">
+        <h2>Find Your Next Favorite Film...</h2>
         <search-bar></search-bar>
         <!--TODO : Debug remove-->
         <!-- <div>HI{{ filteredMovies }}</div> -->
@@ -47,6 +48,8 @@ export default {
 </script>
 
 <style scoped>
-
-
+    h2{
+        color: #dbbe4b;
+        text-align: center;
+    }
 </style>
