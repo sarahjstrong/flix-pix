@@ -4,10 +4,12 @@ import com.techelevator.exception.DaoException;
 import com.techelevator.model.UserRating;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class JdbcUserRatingDao implements UserRatingDao {
 
     private final JdbcTemplate jdbcTemplate;
