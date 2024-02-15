@@ -14,13 +14,21 @@
           <router-link class="nav-link home" v-bind:to="{ name: 'home' }">Home</router-link>
           <router-link class="nav-link browse" :to="{name: 'browse'}">Browse</router-link>
           <!-- !-- This div will only be rendered if the token in the Vuex store is not an empty string -->
-            <router-link v-if="this.$store.state.token != ''" class="nav-link recommended" :to="{name: 'recommended'}">Recommended</router-link>
+          <router-link v-if="this.$store.state.token != '' && isAdmin === false" class="nav-link recommended" :to="{name: 'recommended'}">Recommended</router-link>
         </div>
 
 
 
       <div v-if="this.$store.state.token != ''" class="right-nav-links">
-          <router-link class="nav-link profile" :to="{name: 'profile'}">Profile</router-link>
+          <div v-if="isAdmin === true">
+            <router-link :to="{ name: 'admin' }" class="nav-link admin" v-show="isAdmin">Admin</router-link>
+          </div>
+
+          <div v-if="isAdmin === false">
+            <router-link class="nav-link profile" :to="{name: 'profile'}">Profile</router-link>
+
+          </div>
+
           <router-link class="nav-link logout" v-bind:to="{ name: 'logout' }">Logout</router-link>
       </div>
   
@@ -33,6 +41,21 @@
         <router-view />
       </div>
 </template>
+
+<script>
+
+  export default{
+    computed: {
+      isAdmin() {
+        // call to user service to receive role info
+        // if role === admin return TRUE
+        // else return FALSE
+        return true;
+      }
+    }
+  }
+
+</script>
 
 <style>
 @font-face {
@@ -65,6 +88,10 @@ body{
   display: flex;
   flex-grow: 1;
   justify-content: space-between;
+}
+
+.right-nav-links{
+  display: flex;
 }
 
 

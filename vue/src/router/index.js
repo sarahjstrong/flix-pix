@@ -11,6 +11,7 @@ import ProfileView from '../views/ProfileView.vue';
 import FavoritesView from '../views/FavoritesView.vue';
 import MovieView from '../views/MovieView.vue';
 import RecommendedView from '../views/RecommendedView.vue'
+import AdminView from '../views/AdminView.vue'
 
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
@@ -89,6 +90,14 @@ const routes = [
     path: "/recommended",
     name: "recommended",
     component: RecommendedView,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/admin",
+    name: "admin",
+    component: AdminView,
     meta: {
       requiresAuth: true
     }
