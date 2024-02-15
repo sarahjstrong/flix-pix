@@ -9,11 +9,11 @@
         <h1 class="title-text">FLIX PIX</h1>
         <img src="../assets/images/logo.png" alt="popcorn" class="popcorn-img">
         <div class="button-container">
-            <router-link :to="{ name: 'login' }" v-show="this.$store.state.user === ''">
+            <router-link :to="{ name: 'login' }" v-show="this.$store.state.token === ''">
                 <button class="header-btn">Login</button>
             </router-link>
 
-            <router-link :to="{ name: 'register' }" v-show="this.$store.state.user === ''">
+            <router-link :to="{ name: 'register' }" v-show="this.$store.state.token === ''">
                 <button class="header-btn">Register</button>
             </router-link>
         </div>
