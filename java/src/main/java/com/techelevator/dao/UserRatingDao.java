@@ -9,7 +9,7 @@ public interface UserRatingDao {
 
    public  List<UserRating> getUserRatingsByUsername(String username);
 
-//   public  UserRating getUserRatingById(int ratingId);
+
 
    public UserRating addUserRating(UserRating userRating);
 
@@ -17,6 +17,6 @@ public interface UserRatingDao {
 
     public void deleteUserRating(int ratingId);
 
-
+//   public  UserRating getUserRatingById(int ratingId);
 
 }
