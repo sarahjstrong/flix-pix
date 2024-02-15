@@ -35,6 +35,27 @@ public class MovieController {
         return returnedId;
     }
 
+
+    @RequestMapping(path = "/movie/{id}", method = RequestMethod.GET)
+    public Movie getMovieById(@PathVariable int id) {
+        return movieDao.getMovieById(id);
+    }
+
+    @RequestMapping(path = "/movie/{name}", method = RequestMethod.GET)
+    public Movie getMovieByName(@PathVariable String name) {
+        return movieDao.getMovieByName(name);
+    }
+
+    @RequestMapping(path = "/movies-by-genre/{genre}", method = RequestMethod.GET)
+    public List<Movie> getMoviesByGenre(@PathVariable String genre) {
+        return movieDao.getMoviesByGenre(genre);
+    }
+
+    @RequestMapping(path = "/movies-by-rating/{rating}", method = RequestMethod.GET)
+    public List<Movie> getMoviesByRating(@PathVariable String rating) {
+        return movieDao.getMoviesByRating(rating);
+    }
+
 }
 
 
