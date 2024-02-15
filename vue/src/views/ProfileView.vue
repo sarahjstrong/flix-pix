@@ -79,7 +79,7 @@
     .profile-favs {
       grid-area: fav;
     border: 5px solid #dbdbdb;
-    background-color: rgb(255, 252, 244);
+    background-color: #FFF6D7;
     border-radius: 1vh;
     width: 100%;
     height: 100%;
@@ -93,7 +93,7 @@
     .profile-info {
       grid-area: info;
     border: 5px solid #dbdbdb;
-    background-color: rgb(255, 252, 244);
+    background-color: #FFF6D7;
     border-radius: 1vh;
     width: 100%;
     height: 100%;
@@ -110,7 +110,7 @@
     .profile-friends {
       grid-area: friends;
     border: 5px solid #dbdbdb;
-    background-color: rgb(255, 252, 244);
+    background-color: #FFF6D7;
     border-radius: 1vh;
     width: 100%;
     height: 100%;
@@ -134,7 +134,7 @@
         outline: none;
         cursor: pointer;
         position: relative;
-        box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.1);
+        /* box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.1); */
         overflow: hidden;
         transition: transform 0.3s;
 }
