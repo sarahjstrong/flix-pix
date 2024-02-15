@@ -45,7 +45,7 @@ export function createStore(currentToken, currentUser) {
       DELETE_MOVIE_FROM_FAV(state, movieId) {
         // Call to favorite service and delete movie from favorites
       },
-      UPLOAD_MOVIES(state) {
+      ADD_MOVIES_FROM_DATABASE(state) {
         MovieService.getMovies( response => {
           state.movies = response.data;
         })

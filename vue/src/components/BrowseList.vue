@@ -1,7 +1,10 @@
 <template>
-    <div class="card-list">
+    <div class="card-list" v-show="totalResults > 0">
         <movie-card class="card" v-for="(movie, index) in movies" v-bind:key=index v-bind:movie="movie"></movie-card>
+    </div>
 
+    <div class="no-results" v-show="totalResults === 0">
+        <h3>No movies match your search</h3>
     </div>
     </template>
 
@@ -13,6 +16,11 @@
         components: {
             MovieCard
         },
+        computed: {
+            totalResults() {
+                return this.movies.length;
+            }
+        }
         
     }
 </script>
@@ -31,6 +39,11 @@
         flex-wrap: wrap;
         justify-content: space-around;
 
+    }
+
+    h3{
+        color: #dbbe4b;
+        text-align: center;
     }
 
 

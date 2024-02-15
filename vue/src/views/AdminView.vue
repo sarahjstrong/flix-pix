@@ -35,7 +35,7 @@
             }
         },
         created() {
-            this.addApiMovies;
+            this.addApiMovies();
         }
     }
 </script>
