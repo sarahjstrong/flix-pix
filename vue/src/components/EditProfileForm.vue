@@ -9,22 +9,22 @@
             <input type="text" id="username" v-model="user.username">
           </div>
 
-          <div>
+          <div class="form-group">
             <label for="bio">Bio: </label>
             <input type="text" id="bio" v-model="user.bio">
           </div>
 
-          <div class="form-group">
+          <div class="form-group genres">
             <label for="genres">Genres: </label>
             <div class="genre-checkboxes">
-              <div v-for="genre in genres" :key="genre.id">
+              <div class="items" v-for="genre in genres" :key="genre.id">
                 <input type="checkbox" :id="genre.id" :value="genre.name" v-model="selectedGenres">
-                <label :for="genre.id">{{ genre.name }}</label>
+                <label class="genre-name" :for="genre.id">{{ genre.name }}</label>
               </div>
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="form-group director-section">
             <label for="director">Favorite Directors: </label>
             <input type="text" id="director" v-model="currentDirector">
             <button class="add-director-btn" v-on:click="addDirector">Add</button>
@@ -95,31 +95,56 @@
     font-family: 'roboto';
     src: url(../assets/fonts/Roboto-Regular.ttf);
   }
-  .form-info-container{
-    /* border: 2px solid #000000; */
-    justify-items: left;
-    font-family: 'roboto';
+
+
+  .form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: 19px;
 
   }
 
-  .form-group {
-    margin-bottom: 1rem;
+  .form-info-container{
+    /* border: 2px solid #000000; */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    
 
+  }
+
+  .genres {
+    align-items: flex-start;
+  }
+
+  .genre-checkboxes{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+
+  .items {
+    display: flex;
+    justify-content: flex-start;
   }
     .save-btn{
         font-size: 1.2em;
         font-family: 'mont';
+        padding: 5px 10px;
         background-color: #893222;
         color: #dbbe4b;
         border: none;
         cursor: pointer;
         border-radius: 50px;
-        margin-right: 2%;
         outline: none;
         cursor: pointer;
         position: relative;
+        /* box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.1); */
         overflow: hidden;
         transition: transform 0.3s;
+        margin-right: 5px;
 }
 
       .save-btn:hover {
@@ -130,17 +155,19 @@
       .cancel-btn{
         font-size: 1.2em;
         font-family: 'mont';
+        padding: 5px 10px;
         background-color: #893222;
         color: #dbbe4b;
         border: none;
         cursor: pointer;
         border-radius: 50px;
-        margin-right: 2%;
         outline: none;
-      
+        cursor: pointer;
         position: relative;
+        /* box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.1); */
         overflow: hidden;
         transition: transform 0.3s;
+        margin-left: 5px;
       
       }
 
@@ -151,9 +178,10 @@
 
 
         .add-director-btn{  
-        font-family: 'mont';
+          font-family: 'mont';
         background-color: #893222;
         color: #dbbe4b;
+        height: 36px;
         /* border-radius: 20px; */
         outline: none;
         cursor: pointer;
@@ -162,5 +190,15 @@
     
         
         }
+
+        input {
+        width: 200px;
+        height: 30px;
+        font-size: 16px;
+        margin-left: 10px;
+        background-color: #ffffff
+        }
+
+        
 
     </style>

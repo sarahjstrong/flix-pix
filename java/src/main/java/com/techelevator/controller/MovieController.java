@@ -8,6 +8,7 @@ import com.techelevator.dao.MovieDao;
 import com.techelevator.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
@@ -31,6 +32,7 @@ public class MovieController {
     public MovieController(MovieDao movieDao) {
         this.movieDao = movieDao;}
 
+<<<<<<< HEAD
 //    @RequestMapping(path = "/api/all-movies", method = RequestMethod.GET)
 //    public List<Movie> getAllMovies() {
 //        String url = "http://omdbapi.com/";
@@ -97,6 +99,13 @@ public class MovieController {
 
 
         return responseEntity.getBody().getSearch();
+=======
+
+
+    @RequestMapping(path = "/all-movies", method = RequestMethod.GET)
+    public List<Movie> getAllMovies() {
+        return movieDao.getAllMovies();
+>>>>>>> 1fde3317c5ba1e95d8a74405191620b770127142
     }
 
 

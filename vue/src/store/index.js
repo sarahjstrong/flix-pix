@@ -14,7 +14,8 @@ export function createStore(currentToken, currentUser) {
       movies: [],
       apiMovies: [],
       filterBy : '',
-      searchTerm: ''
+      searchTerm: '',
+      searchName: '',
     },
     mutations: {
       SET_AUTH_TOKEN(state, token) {
