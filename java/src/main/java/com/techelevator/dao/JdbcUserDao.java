@@ -88,6 +88,18 @@ public class JdbcUserDao implements UserDao {
         return newUser;
     }
 
+    @Override
+    public String getUserRoleByUsername(String username) {
+        String sql = "SELECT role FROM user WHERE username = ?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username);
+        if (results.next()) {
+            return results.getString("role");
+        }
+        return null;
+    }
+
+
+
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();
         user.setId(rs.getInt("user_id"));

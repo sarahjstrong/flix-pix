@@ -73,6 +73,14 @@ public class User {
          this.authorities.add(new Authority(authority));
       }
    }
+   public String getRoleByUsername(String username) {
+      for (Authority authority : authorities) {
+         if (authority.getName().equalsIgnoreCase(username)) {
+            return authority.getName();
+         }
+      }
+      return null; // Return null if no matching role is found
+   }
 
    @Override
    public boolean equals(Object o) {
