@@ -15,6 +15,5 @@ public interface MovieDao {
 
     public List<Movie> getMoviesByRating(String rating);
 
-    int addMovieFromAPI(String imdbId);
 }
 

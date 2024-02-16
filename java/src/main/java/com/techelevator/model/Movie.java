@@ -19,7 +19,7 @@ public class Movie {
 
     private String director;
 
-    private String imdbID;
+//    private String imdbID;
 
     private String poster;
 
@@ -32,13 +32,13 @@ public class Movie {
         this.director = director;
     }
 
-    public String getImdbID() {
-        return imdbID;
-    }
-
-    public void setImdbID(String imdbID) {
-        this.imdbID = imdbID;
-    }
+//    public String getImdbID() {
+//        return imdbID;
+//    }
+//
+//    public void setImdbID(String imdbID) {
+//        this.imdbID = imdbID;
+//    }
 
     public String getPoster() {
         return poster;
