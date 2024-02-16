@@ -32,40 +32,7 @@ public class MovieController {
     public MovieController(MovieDao movieDao) {
         this.movieDao = movieDao;}
 
-<<<<<<< HEAD
-//    @RequestMapping(path = "/api/all-movies", method = RequestMethod.GET)
-//    public List<Movie> getAllMovies() {
-//        String url = "http://omdbapi.com/";
-//        String apiUrl = url + "?apikey=bac84920&t=&s=movie&page=1";
-//        RestTemplate restTemplate = new RestTemplate();
-//        ResponseEntity<String> responseEntity = restTemplate.getForEntity(apiUrl, String.class);
-//        String movies = responseEntity.getBody();
-//        List<Movie> movieList = new ArrayList<>();
-//
-//        try{
-//            ObjectMapper objectMapper = new ObjectMapper();
-//            JsonNode jsonNode;
-//            jsonNode = objectMapper.readTree(responseEntity.getBody());
-//            JsonNode root = jsonNode.path("Search");
-//
-//            for(JsonNode movieNode : root){
-//                    String title = root.path("Title").asText();
-//                    int releaseYear = root.path("Year").asInt();
-//                    String imdbId = root.path("imdbID").asText();
-//                    String poster = root.path("Poster").asText();
-//
-//                    Movie movie = new Movie(title,releaseYear,imdbId,poster);
-//                    movieList.add(movie);
-//            }
-//        } catch (JsonMappingException e) {
-//            throw new RuntimeException(e);
-//        } catch (JsonProcessingException e) {
-//            throw new RuntimeException(e);
-//        }
-//
-//
-//        return movieList;
-//    }
+
 
     @RequestMapping(path = "/api/all-movies", method = RequestMethod.GET)
     public List<ApiMovie> getAllMovies() {
@@ -73,39 +40,10 @@ public class MovieController {
         String apiUrl = url + "?apikey=bac84920&t=&s=movie&page=1";
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<ApiSearch> responseEntity = restTemplate.getForEntity(apiUrl, ApiSearch.class);
-//        String movies = responseEntity.getBody();
-//        List<Movie> movieList = new ArrayList<>();
-//
-//        try{
-//            ObjectMapper objectMapper = new ObjectMapper();
-//            JsonNode jsonNode;
-//            jsonNode = objectMapper.readTree(responseEntity.getBody());
-//            JsonNode root = jsonNode.path("Search");
-//
-//            for(JsonNode movieNode : root){
-//                String title = root.path("Title").asText();
-//                int releaseYear = root.path("Year").asInt();
-//                String imdbId = root.path("imdbID").asText();
-//                String poster = root.path("Poster").asText();
-//
-//                Movie movie = new Movie(title,releaseYear,imdbId,poster);
-//                movieList.add(movie);
-//            }
-//        } catch (JsonMappingException e) {
-//            throw new RuntimeException(e);
-//        } catch (JsonProcessingException e) {
-//            throw new RuntimeException(e);
-//        }
 
 
         return responseEntity.getBody().getSearch();
-=======
 
-
-    @RequestMapping(path = "/all-movies", method = RequestMethod.GET)
-    public List<Movie> getAllMovies() {
-        return movieDao.getAllMovies();
->>>>>>> 1fde3317c5ba1e95d8a74405191620b770127142
     }
 
 
