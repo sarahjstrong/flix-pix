@@ -5,9 +5,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.techelevator.dao.MovieDao;
-import com.techelevator.model.ImdbIdDto;
-import com.techelevator.model.Movie;
-import com.techelevator.model.MovieAPIDTO;
+import com.techelevator.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
@@ -18,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import services.OMDBService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -35,9 +34,16 @@ public class MovieController {
 
 
 
-    @RequestMapping(path = "/all-movies", method = RequestMethod.GET)
-    public List<Movie> getAllMovies() {
-        return movieDao.getAllMovies();
+    @RequestMapping(path = "/api/all-movies", method = RequestMethod.GET)
+    public List<ApiMovie> getAllMovies() {
+        String url = "http://omdbapi.com/";
+        String apiUrl = url + "?apikey=bac84920&t=&s=movie&page=1";
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<ApiSearch> responseEntity = restTemplate.getForEntity(apiUrl, ApiSearch.class);
+
+
+        return responseEntity.getBody().getSearch();
+
     }
 
 
