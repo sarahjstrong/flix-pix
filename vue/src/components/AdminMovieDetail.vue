@@ -9,8 +9,10 @@
                     <h4 class="movie-genre">Genre</h4>
                     <p class="movie-plot">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam sapiente dolorem pariatur explicabo quia, hic tenetur est. Ut quidem atque, officia corrupti iusto ea recusandae ratione, quos, quam cumque culpa. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor consequatur fugit tempore asperiores sit obcaecati beatae eius doloribus eligendi officia cum, explicabo eaque nesciunt cumque ab deserunt facere inventore? Fugit.</p>
                 </div>
+                <div class="btn-container">
+                    <button class="btn" v-on:click="updateMoviesOnSite">{{addBtn}}</button>
+                </div>
 
-                <button class="btn" v-on:click="updateMoviesOnSite">{{addBtn}}</button>
             </div>
         </div>
 
@@ -72,14 +74,14 @@
         width: 50%;
         padding-left: 50px;
         padding-right: 50px;
-        padding-top: 20px;
+        padding-top: 40px;
         box-shadow: 20px 20px 20px  rgba(0, 0, 0, 0.1);
         border-radius: 1vh;
         border: 5px solid #dbdbdb;
     }
 
     img{
-        width: 30%;
+        width: 25%;
         box-shadow: 20px 20px 20px  rgba(0, 0, 0, 0.1);
         border-radius: 1vh;
         border: 5px solid #dbdbdb;
@@ -92,7 +94,7 @@
         font-size: 1.2em;
         font-family: 'mont';
         width: 50%;
-        height: 5%;
+        height: 10%;
         background-color: #893222;
         color: #dbbe4b;
         border: none;
@@ -107,12 +109,24 @@
         margin-top: 30px;
     }
 
+    .btn-container{
+        display: flex;
+        flex-grow: 1;
+        justify-content: center;
+    }
+
     p{
         font-size: 1.4em;
+        margin-top: 60px;
+        margin-bottom: 60px;
     }
 
     h4{
         font-style: italic;
+    }
+
+    .movie-genre{
+        margin-top: 60px;
     }
 
 

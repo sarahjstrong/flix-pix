@@ -28,6 +28,7 @@
 
 <style scoped>
 
+
     .main-img {
         display: flex;
         justify-content: center;
