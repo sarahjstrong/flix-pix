@@ -77,7 +77,7 @@
     margin: 100px;
 }
     .profile-favs {
-      grid-area: fav;
+    grid-area: fav;
     border: 5px solid #dbdbdb;
     background-color: #FFF6D7;
     border-radius: 1vh;
@@ -91,7 +91,7 @@
     }
 
     .profile-info {
-      grid-area: info;
+    grid-area: info;
     border: 5px solid #dbdbdb;
     background-color: #FFF6D7;
     border-radius: 1vh;

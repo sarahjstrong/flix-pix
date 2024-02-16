@@ -12,9 +12,9 @@ export function createStore(currentToken, currentUser) {
       favorites: [],
       friends: [],
       movies: [],
-      apiMovies: [],
+      apiMovie: '',
       filterBy : '',
-      searchTerm: '',
+      adminSearchTerm: '',
       searchName: '',
     },
     mutations: {
@@ -37,6 +37,9 @@ export function createStore(currentToken, currentUser) {
       UPDATE_SEARCH_TERM(state, newSearch) {
         state.searchTerm = newSearch;
       },
+      UPDATE_ADMIN_SEARCH_TERM(state, newSearch) {
+        state.adminSearchTerm = newSearch;
+      },
       SET_FILTER_BY(state, newFilter) {
         state.filterBy = newFilter;
       },
@@ -51,8 +54,8 @@ export function createStore(currentToken, currentUser) {
           state.movies = response.data;
         })
       },
-      ADD_MOVIES_FROM_API(state) {
-        //
+      SET_MOVIE_FROM_API(state, movie) {
+        state.apiMovie = movie;
       },
       UPLOAD_USER_DATA(state) {
         // Call to receive all user data and reassign user (this will include bio, location, etc)
