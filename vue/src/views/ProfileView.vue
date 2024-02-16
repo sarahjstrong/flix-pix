@@ -79,40 +79,44 @@
     .profile-favs {
       grid-area: fav;
     border: 5px solid #dbdbdb;
-    background-color: rgb(255, 252, 244);
-    border-radius: 7px;
+    background-color: #FFF6D7;
+    border-radius: 1vh;
     width: 100%;
     height: 100%;
     box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin-top: 40px
+    margin-top: 40px;
+    
+    margin-left: 3%;
     }
 
     .profile-info {
       grid-area: info;
     border: 5px solid #dbdbdb;
-    background-color: rgb(255, 252, 244);
-    border-radius: 7px;
+    background-color: #FFF6D7;
+    border-radius: 1vh;
     width: 100%;
     height: 100%;
-    max-width: 550px;
-    max-height: 550px;
+    max-width: 35vw;
+    max-height: 500vh;
     box-shadow: 20px 20px 20px  rgba(0, 0, 0, 0.1);
-    margin-right: 25%;
-    margin-bottom: 70px;
-    text-align: center
+    margin-right: 5%;
+    margin-bottom: 12vh;
+    padding-left: 15vh;
+    text-align: center;
+    padding-right: 20%;
     }
 
     .profile-friends {
       grid-area: friends;
     border: 5px solid #dbdbdb;
-    background-color: rgb(255, 252, 244);
-    border-radius: 7px;
+    background-color: #FFF6D7;
+    border-radius: 1vh;
     width: 100%;
     height: 100%;
     box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin-bottom: 70px
+    margin-bottom: 12vh;
 
     }
     
@@ -121,7 +125,7 @@
         font-size: 1.2em;
         font-family: 'mont';
         padding: 5px 10px;
-        margin: 10px;
+        margin-left: 13%;
         background-color: #893222;
         color: #dbbe4b;
         border: none;
@@ -130,7 +134,7 @@
         outline: none;
         cursor: pointer;
         position: relative;
-        box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.1);
+        /* box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.1); */
         overflow: hidden;
         transition: transform 0.3s;
 }

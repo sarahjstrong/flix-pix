@@ -12,6 +12,7 @@ export function createStore(currentToken, currentUser) {
       favorites: [],
       friends: [],
       movies: [],
+      apiMovies: [],
       filterBy : '',
       searchTerm: ''
     },
@@ -44,10 +45,13 @@ export function createStore(currentToken, currentUser) {
       DELETE_MOVIE_FROM_FAV(state, movieId) {
         // Call to favorite service and delete movie from favorites
       },
-      UPLOAD_MOVIES(state) {
+      ADD_MOVIES_FROM_DATABASE(state) {
         MovieService.getMovies( response => {
           state.movies = response.data;
         })
+      },
+      ADD_MOVIES_FROM_API(state) {
+        //
       },
       UPLOAD_USER_DATA(state) {
         // Call to receive all user data and reassign user (this will include bio, location, etc)
