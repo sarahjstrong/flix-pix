@@ -35,9 +35,9 @@ public class MovieController {
 
 
     @RequestMapping(path = "/api/all-movies", method = RequestMethod.GET)
-    public List<ApiMovie> getAllMovies() {
+    public List<ApiMovie> getAllMovies(@RequestParam(defaultValue = "1") int page) {
         String url = "http://omdbapi.com/";
-        String apiUrl = url + "?apikey=bac84920&t=&s=movie&page=1";
+        String apiUrl =  url + "?apikey=" + "bac84920&t=" + "&s=movie&page=" + page;
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<ApiSearch> responseEntity = restTemplate.getForEntity(apiUrl, ApiSearch.class);
 
