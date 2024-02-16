@@ -5,7 +5,6 @@ import com.techelevator.model.ImdbIdDto;
 import com.techelevator.model.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +19,8 @@ public class MovieController {
 
     public MovieController(MovieDao movieDao) {
         this.movieDao = movieDao;}
+
+
 
     @RequestMapping(path = "/all-movies", method = RequestMethod.GET)
     public List<Movie> getAllMovies() {
