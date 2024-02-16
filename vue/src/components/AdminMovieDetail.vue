@@ -1,13 +1,17 @@
 <template>
         <div class="movie-card">
-            <div class="movie-text">
-                <h1 class="movie-title">{{ movie.title }}</h1>
-                <h2 class="movie-director">Directed by: {{ movie.director }}</h2>
-                <h3 class="movie-year">Release year: {{ movie.releaseYear }}</h3>
-                <p>{{ movie. }}</p>
+            <img class="movie-thumbnail" src='https://m.media-amazon.com/images/M/MV5BMDQ0NjgyN2YtNWViNS00YjA3LTkxNDktYzFkZTExZGMxZDkxXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_SX300.jpg' alt="">
+            <div class="info-container">
+                <div class="movie-text">
+                    <h1 style="font-family: 'mont';">{{ movie.title }}</h1>
+                    <h3 class="movie-year">{{ movie.releaseYear }} • Directed by</h3>
+                    <h2 class="movie-director">{{ movie.director }}</h2>
+                    <h4 class="movie-genre">Genre</h4>
+                    <p class="movie-plot">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam sapiente dolorem pariatur explicabo quia, hic tenetur est. Ut quidem atque, officia corrupti iusto ea recusandae ratione, quos, quam cumque culpa. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor consequatur fugit tempore asperiores sit obcaecati beatae eius doloribus eligendi officia cum, explicabo eaque nesciunt cumque ab deserunt facere inventore? Fugit.</p>
+                </div>
+
+                <button class="btn" v-on:click="updateMoviesOnSite">{{addBtn}}</button>
             </div>
-            <img class="movie-thumbnail" :src="movie.img" alt="">
-            <button v-on:click="updateMoviesOnSite">{{addBtn}}</button>
         </div>
 
 
@@ -46,45 +50,70 @@
 </script>
 
 <style scoped>
-    .movie-year{
+
+
+    .movie-card{
+        display: flex;
+        justify-content: space-around;
+        /* display: flex;
+        justify-items: flex-start;
+
+        border-radius: 1vh;
+        box-shadow: 20px 20px 20px  rgba(0, 0, 0, 0.1);
+        margin-bottom: 12vh;
+        text-align: center;
+        border: 5px solid #dbdbdb; */
+        /* flex: 1; */
+    }
+    .info-container{
+        display: flex;
+        flex-direction: column;
+        background-color: #FFF6D7;
+        width: 50%;
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-top: 20px;
+        box-shadow: 20px 20px 20px  rgba(0, 0, 0, 0.1);
+        border-radius: 1vh;
+        border: 5px solid #dbdbdb;
+    }
+
+    img{
+        width: 30%;
+        box-shadow: 20px 20px 20px  rgba(0, 0, 0, 0.1);
+        border-radius: 1vh;
+        border: 5px solid #dbdbdb;
+    }
+
+    .btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2em;
+        font-family: 'mont';
+        width: 50%;
+        height: 5%;
+        background-color: #893222;
+        color: #dbbe4b;
+        border: none;
+        cursor: pointer;
+        border-radius: 50px;
+        outline: none;
+        cursor: pointer;
+        position: relative;
+        /* box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.1); */
+        overflow: hidden;
+        transition: transform 0.3s;
+        margin-top: 30px;
+    }
+
+    p{
+        font-size: 1.4em;
+    }
+
+    h4{
         font-style: italic;
     }
 
-    .movie-card{
-        background-color: #FFF6D7;
-        border-radius: 1vh;
-        width: 100%;
-        height: 100%;
-        max-width: 35vw;
-        max-height: 500vh;
-        box-shadow: 20px 20px 20px  rgba(0, 0, 0, 0.1);
-        margin-right: 5%;
-        margin-bottom: 12vh;
-        padding-left: 15vh;
-        text-align: center;
-        padding-right: 20%;
-        border: 5px solid #dbdbdb;
-        /* flex: 1; */
-    }
-
-    .movie-thumbnail{
-        height: 50%;
-        widows: 50%;
-    }
-
-    .info-btn{
-        margin-top: 10px;
-        width: 400px;
-        height: 30px;
-        font-size: 16px;
-    }
-
-    .movie-title{
-        margin-bottom: 0px;
-    }
-
-    .movie-director{
-        margin-bottom: 0px;
-    }
 
 </style>

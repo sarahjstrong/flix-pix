@@ -2,7 +2,7 @@
     <h2>Add Movie To Site: </h2>
     <admin-search-bar></admin-search-bar>
     <div v-show="this.$store.state.apiMovie.title != '' && this.$store.state.apiMovie != ''">
-        <admin-movie-detail v-bind:movie="this.$store.state.apiMovie"></admin-movie-detail>
+        <admin-movie-detail v-bind:movie="this.$store.state.apiMovie" class="movie-card"></admin-movie-detail>
     </div>
 
     <div v-show="this.$store.state.apiMovie.title === ''">
@@ -34,6 +34,11 @@
     h4{
         color: #dbbe4b;
         text-align: center;
+    }
+
+    .movie-card{
+        display: flex;
+        margin: 100px;
     }
 
 </style>
