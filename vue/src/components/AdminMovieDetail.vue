@@ -1,10 +1,13 @@
 <template>
         <div class="movie-card">
-            <h2 class="movie-title">{{ movie.title }}</h2>
-            <p class="movie-director">Dir. {{ movie.director }}</p>
-            <p class="movie-year">r. {{ movie.releaseYear }}</p>
+            <div class="movie-text">
+                <h1 class="movie-title">{{ movie.title }}</h1>
+                <h2 class="movie-director">Directed by: {{ movie.director }}</h2>
+                <h3 class="movie-year">Release year: {{ movie.releaseYear }}</h3>
+                <p>{{ movie. }}</p>
+            </div>
             <img class="movie-thumbnail" :src="movie.img" alt="">
-            <button v-on:click="updateMoviesOnSite">addBtn</button>
+            <button v-on:click="updateMoviesOnSite">{{addBtn}}</button>
         </div>
 
 
@@ -32,15 +35,14 @@
                 }
             },
             isAdded() {
-                if(this.$store.state.movies.contains(this.movie)) {
-                    return true;
-                } else {
+                // if(this.$store.state.movies.contains(this.movie)) {
                     return false;
+                // } else {
+                    // return false;
                 }
             }
         }
         
-    }
 </script>
 
 <style scoped>
@@ -49,15 +51,19 @@
     }
 
     .movie-card{
-        display: flex;
-        flex-direction: column;
-        width: 20%;
-        margin: 25px;
-        padding: 20px;
-        border: 2px solid #893222;
-        border-radius: 1%;
-        align-items: center;
-        justify-items: center;
+        background-color: #FFF6D7;
+        border-radius: 1vh;
+        width: 100%;
+        height: 100%;
+        max-width: 35vw;
+        max-height: 500vh;
+        box-shadow: 20px 20px 20px  rgba(0, 0, 0, 0.1);
+        margin-right: 5%;
+        margin-bottom: 12vh;
+        padding-left: 15vh;
+        text-align: center;
+        padding-right: 20%;
+        border: 5px solid #dbdbdb;
         /* flex: 1; */
     }
 

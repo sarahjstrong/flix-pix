@@ -50,7 +50,7 @@
         // call to user service to receive role info
         // if role === admin return TRUE
         // else return FALSE
-        return false;
+        return true;
       }
     }
   }

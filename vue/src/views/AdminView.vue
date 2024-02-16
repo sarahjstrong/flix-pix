@@ -1,47 +1,37 @@
 <template>
     <h2>Add Movie To Site: </h2>
-    <search-bar></search-bar>
-    <admin-browse-list v-bind:movies="filteredMovies" v-show="activeSearch"></admin-browse-list>
+    <admin-search-bar></admin-search-bar>
+    <div v-show="this.$store.state.apiMovie.title != '' && this.$store.state.apiMovie != ''">
+        <admin-movie-detail v-bind:movie="this.$store.state.apiMovie"></admin-movie-detail>
+    </div>
+
+    <div v-show="this.$store.state.apiMovie.title === ''">
+        <h4>No movies match your search</h4>
+    </div>
 </template>
 
 <script>
-    import SearchBar from '../components/SearchBar.vue'
-    import AdminBrowseList from '../components/AdminBrowseList.vue'
+    import AdminSearchBar from '../components/AdminSearchBar.vue'
+    import AdminMovieDetail from '../components/AdminMovieDetail.vue'
 
     export default {
         components: {
-            SearchBar,
-            AdminBrowseList
-        },
-        computed: {
-            filteredMovies() {
-                const allMovies = this.$store.state.apiMovies;
-                const matchText = this.$store.state.searchTerm.toLowerCase();
-                return allMovies.filter( curMovie => {
-                    curMovie.title.toLowerCase().contains(matchText);
-                })
-            },
-            activeSearch() {
-                if(this.$store.state.searchTerm != '') {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
+            AdminSearchBar,
+            AdminMovieDetail
         },
         methods: {
-            addApiMovies() {
-                // Call store method to add movies from api
-            }
-        },
-        created() {
-            this.addApiMovies();
+
         }
     }
 </script>
 
 <style scoped>
     h2{
+        color: #dbbe4b;
+        text-align: center;
+    }
+
+    h4{
         color: #dbbe4b;
         text-align: center;
     }
