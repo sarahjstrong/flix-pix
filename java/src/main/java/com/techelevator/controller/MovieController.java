@@ -5,9 +5,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.techelevator.dao.MovieDao;
-import com.techelevator.model.ImdbIdDto;
-import com.techelevator.model.Movie;
-import com.techelevator.model.MovieAPIDTO;
+import com.techelevator.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import services.OMDBService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -32,9 +31,72 @@ public class MovieController {
     public MovieController(MovieDao movieDao) {
         this.movieDao = movieDao;}
 
-    @RequestMapping(path = "/all-movies", method = RequestMethod.GET)
-    public List<Movie> getAllMovies() {
-        return movieDao.getAllMovies();
+//    @RequestMapping(path = "/api/all-movies", method = RequestMethod.GET)
+//    public List<Movie> getAllMovies() {
+//        String url = "http://omdbapi.com/";
+//        String apiUrl = url + "?apikey=bac84920&t=&s=movie&page=1";
+//        RestTemplate restTemplate = new RestTemplate();
+//        ResponseEntity<String> responseEntity = restTemplate.getForEntity(apiUrl, String.class);
+//        String movies = responseEntity.getBody();
+//        List<Movie> movieList = new ArrayList<>();
+//
+//        try{
+//            ObjectMapper objectMapper = new ObjectMapper();
+//            JsonNode jsonNode;
+//            jsonNode = objectMapper.readTree(responseEntity.getBody());
+//            JsonNode root = jsonNode.path("Search");
+//
+//            for(JsonNode movieNode : root){
+//                    String title = root.path("Title").asText();
+//                    int releaseYear = root.path("Year").asInt();
+//                    String imdbId = root.path("imdbID").asText();
+//                    String poster = root.path("Poster").asText();
+//
+//                    Movie movie = new Movie(title,releaseYear,imdbId,poster);
+//                    movieList.add(movie);
+//            }
+//        } catch (JsonMappingException e) {
+//            throw new RuntimeException(e);
+//        } catch (JsonProcessingException e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//
+//        return movieList;
+//    }
+
+    @RequestMapping(path = "/api/all-movies", method = RequestMethod.GET)
+    public List<ApiMovie> getAllMovies() {
+        String url = "http://omdbapi.com/";
+        String apiUrl = url + "?apikey=bac84920&t=&s=movie&page=1";
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<ApiSearch> responseEntity = restTemplate.getForEntity(apiUrl, ApiSearch.class);
+//        String movies = responseEntity.getBody();
+//        List<Movie> movieList = new ArrayList<>();
+//
+//        try{
+//            ObjectMapper objectMapper = new ObjectMapper();
+//            JsonNode jsonNode;
+//            jsonNode = objectMapper.readTree(responseEntity.getBody());
+//            JsonNode root = jsonNode.path("Search");
+//
+//            for(JsonNode movieNode : root){
+//                String title = root.path("Title").asText();
+//                int releaseYear = root.path("Year").asInt();
+//                String imdbId = root.path("imdbID").asText();
+//                String poster = root.path("Poster").asText();
+//
+//                Movie movie = new Movie(title,releaseYear,imdbId,poster);
+//                movieList.add(movie);
+//            }
+//        } catch (JsonMappingException e) {
+//            throw new RuntimeException(e);
+//        } catch (JsonProcessingException e) {
+//            throw new RuntimeException(e);
+//        }
+
+
+        return responseEntity.getBody().getSearch();
     }
 
 

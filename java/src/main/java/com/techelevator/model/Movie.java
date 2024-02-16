@@ -19,7 +19,7 @@ public class Movie {
 
     private String director;
 
-//    private String imdbID;
+    private String imdbId;
 
     private String poster;
 
@@ -30,6 +30,14 @@ public class Movie {
         this.genreId=genreId;
         this.rating = rating;
         this.director = director;
+    }
+
+    public Movie(String title, int releaseYear, String imdbId, String poster) {
+        this.title = title;
+        this.releaseYear = releaseYear;
+        this.imdbId = imdbId;
+        this.poster = poster;
+
     }
 
 //    public String getImdbID() {
