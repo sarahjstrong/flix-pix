@@ -25,10 +25,14 @@
       <p class="link"><router-link v-bind:to="{ name: 'login' }">Already have an account? Log in.</router-link></p>
     </form>
     <div class="overlay-card">
-      <!-- <img src="@/assets/images/horizontallogo.png" class="logo" alt="Logo">  -->
-      <!-- Content of the overlaying card goes here -->
-      <p class="quote">Unlock A World A Movie Magic</p>
-    </div>
+  <div class="image-container">
+    <img src="@/assets/images/overlayimagepg.jpg" class="image" alt="Background Image">
+    <div class="dark-overlay"></div> <!-- Add a dark overlay div -->
+  </div>
+  <p class="quote">UNLOCK A WORLD OF MOVIE MAGIC</p>
+</div>
+
+
   </div>
 </template>
 
@@ -84,15 +88,17 @@ export default {
 <style scoped>
 #register {
   position: relative; 
-  background-color: #dbdbdb;
+  background-color: #FFF6D7;
   border-radius: 7px;
+  border: 4px solid #dbdbdb;
   max-width: 800px; 
   max-height: 800px;
   margin: auto; 
   padding: 40px 10px 60px 10px; 
   box-sizing: border-box;
   box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.1);
-  margin-top: 50px; 
+  margin-top: 20vh; 
+  
 }
 
 .overlay-card {
@@ -102,11 +108,18 @@ export default {
   transform: translateY(-50%); 
   width: 50%; 
   height: 50%; 
-  border: 2px solid #ccc;
+  border: 1px solid #ccc;
   border-radius: 5px;
-  background: url('@/assets/images/popcorn.jpg') no-repeat center center; 
-  background-size: cover; 
-  padding: 20px 0px 210px 8px;
+  background: none; 
+  padding: 25px 0px 225px 2px;
+}
+.dark-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(30, 30, 30, 0.5); /* Semi-transparent black color */
 }
 
 /* .logo {
@@ -115,7 +128,21 @@ export default {
   left: 20px; 
   width: 150px; 
 } */
-
+.image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: blur(1px); 
+  padding: 0vh;
+  border-radius: 5px;
+}
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .form-input-group {
   margin-bottom: 1rem;
 }
@@ -149,17 +176,21 @@ export default {
   transform: scale(1.1);
 } */
 
-.quote{
-  font-size: 20px;
+.quote {
+  position: absolute;
+  padding-left: 2vh;
+  font-size: 22px;
+  font-weight: bold;
   font-family: 'mont';
   color: #000000;
-  text-shadow: 4px 4px 4px #000000;
-  align-items: center;
-  justify-content: center;
-  margin-top: 10px;
-  margin-left: 35px;
-
 }
+
+input {
+        width: 200px;
+        height: 30px;
+        font-size: 16px;
+        background-color: #ffffff
+        }
 
 label {
   margin-right: 0.5rem;
