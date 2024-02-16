@@ -80,6 +80,7 @@ export default {
   max-height: 700px; 
   margin: auto; 
   text-align: center;
+  margin-top: 10%;
   padding: 20px; 
   box-sizing: border-box;
   box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.1);
