@@ -18,6 +18,26 @@ public class RegisterUserDto {
     @NotEmpty(message = "Please select a role for this user.")
     private String role;
 
+    private String location;
+
+    private String aboutMe;
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getAboutMe() {
+        return aboutMe;
+    }
+
+    public void setAboutMe(String aboutMe) {
+        this.aboutMe = aboutMe;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -49,4 +69,5 @@ public class RegisterUserDto {
     public void setRole(String role) {
         this.role = role;
     }
+
 }

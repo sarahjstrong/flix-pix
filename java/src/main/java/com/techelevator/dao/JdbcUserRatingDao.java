@@ -23,7 +23,7 @@ public class JdbcUserRatingDao implements UserRatingDao {
     public List<UserRating> getAllUserRatings() {
         List<UserRating> userRatings = new ArrayList<>();
         try {
-            String sql = "SELECT rating_id, user_id, movie_id, rating FROM user_rating";
+            String sql = "SELECT rating_id, user_id, movie_id, rating, review FROM user_rating";
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
             while (results.next()) {
                 UserRating userRating = mapRowToUserRating(results);
@@ -40,7 +40,8 @@ public class JdbcUserRatingDao implements UserRatingDao {
         int userId = rs.getInt("user_id");
         int movieId = rs.getInt("movie_id");
         double rating = rs.getDouble("rating");
-        return new UserRating(ratingId, userId, movieId, rating);
+        String review = rs.getString("review");
+        return new UserRating(ratingId, userId, movieId, rating, review);
     }
 
 
@@ -48,9 +49,9 @@ public class JdbcUserRatingDao implements UserRatingDao {
     public List<UserRating> getUserRatingsByUsername(String username) {
 
             List<UserRating> userRatings = new ArrayList<>();
-            String sql = "SELECT user_rating.rating_id, user_rating.user_id, user_rating.movie_id, user_rating.rating FROM user_rating ur " +
-                    "JOIN users ON user_rating.user_id = user.user_id " +
-                    "WHERE user.username = ?";
+            String sql = "SELECT user_rating.rating_id, user_rating.user_id, user_rating.movie_id, user_rating.rating, user_rating.review FROM user_rating " +
+                    "JOIN users ON user_rating.user_id = users.user_id " +
+                    "WHERE users.username = ?";
             try {
                 SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username);
                 while (results.next()) {
@@ -65,8 +66,8 @@ public class JdbcUserRatingDao implements UserRatingDao {
     @Override
     public UserRating addUserRating(UserRating userRating) {
         try {
-            String sql = "INSERT INTO user_rating (user_id, movie_id, rating) VALUES (?, ?, ?) RETURNING rating_id";
-            int ratingId = jdbcTemplate.queryForObject(sql, Integer.class, userRating.getUserId(), userRating.getMovieId(), userRating.getRating());
+            String sql = "INSERT INTO user_rating (user_id, movie_id, rating, review) VALUES (?, ?, ?, ?) RETURNING rating_id";
+            int ratingId = jdbcTemplate.queryForObject(sql, Integer.class, userRating.getUserId(), userRating.getMovieId(), userRating.getRating(), userRating.getReview());
             userRating.setRatingId(ratingId);
             return userRating;
         } catch (Exception e) {
@@ -77,8 +78,8 @@ public class JdbcUserRatingDao implements UserRatingDao {
     @Override
     public UserRating updateUserRating(UserRating userRating) {
         try {
-            String sql = "UPDATE user_rating SET rating = ? WHERE rating_id = ?";
-            jdbcTemplate.update(sql, userRating.getRating(), userRating.getRatingId());
+            String sql = "UPDATE user_rating SET rating = ?, review = ? WHERE rating_id = ?";
+            jdbcTemplate.update(sql, userRating.getRating(), userRating.getReview(), userRating.getRatingId());
             return userRating;
         } catch (Exception e) {
             throw new DaoException("Error updating user rating", e);

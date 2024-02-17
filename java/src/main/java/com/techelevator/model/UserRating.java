@@ -13,12 +13,24 @@ public class UserRating {
 
     private double rating;
 
-    public UserRating(int ratingId, int userId, int movieId, double rating) {
+    private String review;
+
+
+    public UserRating(int ratingId, int userId, int movieId, double rating, String review) {
         this.ratingId = ratingId;
         this.userId = userId;
         this.movieId = movieId;
         this.rating = rating;
+        this.review=review;
     }
+    public String getReview() {
+        return review;
+    }
+
+    public void setReview(String review) {
+        this.review = review;
+    }
+
 
     public int getRatingId() {
         return ratingId;

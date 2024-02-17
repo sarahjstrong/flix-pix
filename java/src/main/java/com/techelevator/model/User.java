@@ -16,6 +16,24 @@ public class User {
    private boolean activated;
    private Set<Authority> authorities = new HashSet<>();
 
+   private String location;
+
+   private String aboutMe;
+
+   public void setLocation(String location) {
+      this.location = location;
+   }
+
+   public void setAboutMe(String aboutMe) {
+      this.aboutMe = aboutMe;
+   }
+
+   public User(String location, String aboutMe) {
+      this.location = location;
+      this.aboutMe = aboutMe;
+   }
+
+
    public User() { }
 
    public User(int id, String username, String password, String authorities) {
