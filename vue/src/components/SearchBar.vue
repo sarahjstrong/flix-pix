@@ -23,7 +23,7 @@ export default {
             this.$store.commit('SET_FILTER_BY', this.filterBy);
         },
         setSearchTerm() {
-            this.$store.commit('UPDATE_SEARCH_TERM', this.searchTerm);
+            this.$store.commit('UPDATE_BROWSE_SEARCH_TERM', this.searchTerm);
         }
     }
 }

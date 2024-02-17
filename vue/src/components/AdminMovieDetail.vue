@@ -20,34 +20,45 @@
 </template>
 
 <script>
+    import MovieService from '../services/MovieService';
     export default {
         props: ["movie"],
+        data() {
+            return {
+                movies: [],
+                movieToAdd: {
+                    title: this.movie.title,
+                    releaseYear: this.movie.releaseYear,
+                    genre: this.movie.genre,
+                    director: this.movie.director,
+                    poster: this.movie.poster,
+                    plot: this.movie.plot,
+                },
+            }
+        },
         methods: {
            updateMoviesOnSite() {
-            if(this.isAdded === false) {
-                // Call api movie service to add this selected movie to database to appear on site
-            } else {
-                // Call api movie service to remove this selected movie from database so it doesn't appear on site
-            }
-            
+                MovieService.addNewMovie(this.movieToAdd).then(response => {
+
+                }).catch( error => {
+
+                })
            }
         },
         computed: {
             addBtn() {
-                if(this.isAdded === false) {
-                    return 'Add To Site';
-                } else {
-                    return 'Remove From Site';
-                }
+                return 'Add Movie';
             },
-            isAdded() {
-                // if(this.$store.state.movies.contains(this.movie)) {
-                    return false;
-                // } else {
-                    // return false;
+
+        },
+        created() {
+            MovieService.getMovies().then( response => {
+                if(response === 200) {
+                    this.movies = response.data;
                 }
-            }
+            })
         }
+    }
         
 </script>
 

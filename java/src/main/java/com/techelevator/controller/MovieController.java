@@ -34,7 +34,7 @@ public class MovieController {
     public MovieController(MovieDao movieDao) {
         this.movieDao = movieDao;}
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+//    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(path= "/movies", method = RequestMethod.POST)
     public Movie addMovie(@Valid @RequestBody Movie movie) {
         Movie addedMovie = movieDao.addMovie(movie);
@@ -44,6 +44,12 @@ public class MovieController {
             return addedMovie;
         }
     }
+
+    @RequestMapping(path = "/movies", method = RequestMethod.GET)
+    public List<Movie> getMovieList() {
+        return movieDao.getAllMovies();
+    }
+
     @RequestMapping(path = "/api/all-movies", method = RequestMethod.GET)
     public List<ApiMovie> getAllMovies(@RequestParam(defaultValue = "1") int page) {
         String url = "http://omdbapi.com/";

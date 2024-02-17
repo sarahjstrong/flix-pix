@@ -35,6 +35,8 @@ public class JdbcMovieDao implements MovieDao{
         }
 
     }
+
+
     @Override
     public List<Movie> getAllMovies() {
         String sql = "SELECT * FROM movies";

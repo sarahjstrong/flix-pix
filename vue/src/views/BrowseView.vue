@@ -15,15 +15,21 @@
 <script>
 import SearchBar from '../components/SearchBar.vue'
 import BrowseList from '../components/BrowseList.vue';
+import MovieService from '../services/MovieService';
 
 export default {
     components: {
         SearchBar,
         BrowseList
     },
+    data() {
+        return {
+            movies: this.$store.state.movies,
+        }
+    },
     computed: {
         filteredMovies() {
-            const searchTerm = this.$store.state.searchTerm;
+            const searchTerm = this.$store.state.browseSearchTerm;
             const matchText = searchTerm.toLowerCase();
             const filterBy = this.$store.state.filterBy;
             if(filterBy === 'Director') {
@@ -35,7 +41,9 @@ export default {
                     return movie.title.toLowerCase().includes(matchText);
                 })
             } else {
-                return this.movies;
+                return this.movies.filter( movie => {
+                    return movie.director.toLowerCase().includes(matchText) || movie.title.toLowerCase().includes(matchText);
+                });
             }
         },
         activeSearch() {
@@ -48,7 +56,7 @@ export default {
     },
     methods: {
         addMoviesFromDatabase() {
-            // Call store method to add movies from our database
+            this.$store.commit('ADD_MOVIES_FROM_DATABASE')
         }
     },
     created() {
