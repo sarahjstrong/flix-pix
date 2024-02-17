@@ -54,11 +54,8 @@ public class MovieController {
 //        int returnedId = movieDao.addMovieFromAPI(imdbId.getImdbId());
 //        return returnedId;
 //    }
-//
-//    @RequestMapping(path="/test", method=RequestMethod.GET)
-//    public List<Movie> getNewAPIMovie(@RequestParam String query) {
-//        return omdbService.OMDBAPICall(query);
-//    }
+
+
 
 
     @RequestMapping(path = "/movie/{id}", method = RequestMethod.GET)
