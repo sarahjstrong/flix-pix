@@ -15,6 +15,7 @@ export function createStore(currentToken, currentUser) {
       apiMovie: '',
       filterBy : '',
       adminSearchTerm: '',
+      browseSearchTerm: '',
       searchName: '',
     },
     mutations: {
@@ -34,8 +35,8 @@ export function createStore(currentToken, currentUser) {
         state.user = {};
         axios.defaults.headers.common = {};
       },
-      UPDATE_SEARCH_TERM(state, newSearch) {
-        state.searchTerm = newSearch;
+      UPDATE_BROWSE_SEARCH_TERM(state, newSearch) {
+        state.browseSearchTerm = newSearch;
       },
       UPDATE_ADMIN_SEARCH_TERM(state, newSearch) {
         state.adminSearchTerm = newSearch;

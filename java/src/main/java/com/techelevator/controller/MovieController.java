@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.techelevator.dao.MovieDao;
+import com.techelevator.exception.DaoException;
 import com.techelevator.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import services.OMDBService;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +34,21 @@ public class MovieController {
     public MovieController(MovieDao movieDao) {
         this.movieDao = movieDao;}
 
+//    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequestMapping(path= "/movies", method = RequestMethod.POST)
+    public Movie addMovie(@Valid @RequestBody Movie movie) {
+        Movie addedMovie = movieDao.addMovie(movie);
+        if (addedMovie == null) {
+            throw new DaoException("Error adding movie");
+        } else {
+            return addedMovie;
+        }
+    }
 
+    @RequestMapping(path = "/movies", method = RequestMethod.GET)
+    public List<Movie> getMovieList() {
+        return movieDao.getAllMovies();
+    }
 
     @RequestMapping(path = "/api/all-movies", method = RequestMethod.GET)
     public List<ApiMovie> getAllMovies(@RequestParam(defaultValue = "1") int page) {
@@ -97,13 +113,14 @@ public class MovieController {
             int movieId = 1;
             String movieTitle = jsonNode.path("Title").asText();
             int releaseYear = jsonNode.path("Year").asInt();
-            int genreId = 1;
+            String genre = jsonNode.path("Genre").asText();
             Double rating = jsonNode.path("imdbRating").asDouble();
             String director = jsonNode.path("Director").asText();
             String poster = jsonNode.path("Poster").asText();
+            String plot = jsonNode.path("Plot").asText();
 
 
-            newMovie = new Movie(movieId,movieTitle, releaseYear, genreId, rating, director);
+            newMovie = new Movie(movieId,movieTitle, releaseYear, genre, rating, director, poster, plot);
 
         } catch (JsonMappingException e) {
 

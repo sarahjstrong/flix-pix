@@ -11,7 +11,7 @@ public class Movie {
     private int releaseYear;
 
 
-    private int genreId;
+    private String genre;
 
 
     private Double rating;
@@ -23,13 +23,17 @@ public class Movie {
 
     private String poster;
 
-    public Movie(int movieId, String title, int releaseYear, int genreId, Double rating, String director) {
+    private String plot;
+
+    public Movie(int movieId, String title, int releaseYear, String genre, Double rating, String director, String poster, String plot) {
         this.movieId = movieId;
         this.title = title;
         this.releaseYear = releaseYear;
-        this.genreId=genreId;
+        this.genre=genre;
         this.rating = rating;
         this.director = director;
+        this.poster = poster;
+        this.plot = plot;
     }
 
     public Movie(String title, int releaseYear, String imdbId, String poster) {
@@ -80,13 +84,7 @@ public class Movie {
         this.releaseYear = releaseYear;
     }
 
-    public int getGenreId() {
-        return genreId;
-    }
 
-    public void setGenreId(int genreId) {
-        this.genreId = genreId;
-    }
 
     public Double getRating() {
         return rating;
@@ -102,5 +100,29 @@ public class Movie {
 
     public void setDirector(String director) {
         this.director = director;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getImdbId() {
+        return imdbId;
+    }
+
+    public void setImdbId(String imdbId) {
+        this.imdbId = imdbId;
+    }
+
+    public String getPlot() {
+        return plot;
+    }
+
+    public void setPlot(String plot) {
+        this.plot = plot;
     }
 }

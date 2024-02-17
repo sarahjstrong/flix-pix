@@ -7,10 +7,14 @@ export default {
     },
 
     getMovies() {
-        return axios.get('/all-movies');
+        return axios.get('/movies');
     },
 
     getMoviesByGenre(genre) {
-        return axios.get('/genres')
+        return axios.get('/genres');
+    },
+
+    addNewMovie(movie) {
+        return axios.post('/movies');
     }
 }

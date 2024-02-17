@@ -3,6 +3,7 @@ package com.techelevator.dao;
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Movie;
 import com.techelevator.model.MovieAPIDTO;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -19,6 +20,23 @@ public class JdbcMovieDao implements MovieDao{
     public JdbcMovieDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
+
+    @Override
+    public Movie addMovie(Movie movie) {
+        try {
+            String sql = "INSERT INTO movies(title, release_year, director, genre, plot, poster_url) VALUES (?, ?, ?, ?, ?, ?)";
+            int newMovieId = jdbcTemplate.queryForObject(sql, int.class, movie.getTitle(), movie.getReleaseYear(), movie.getDirector(), movie.getGenre(), movie.getPlot(), movie.getPoster());
+            movie.setMovieId(newMovieId);
+            return movie;
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+
+    }
+
+
     @Override
     public List<Movie> getAllMovies() {
         String sql = "SELECT * FROM movies";
@@ -41,11 +59,13 @@ public class JdbcMovieDao implements MovieDao{
             int id = rs.getInt("movie_id");
             String title = rs.getString("title");
             int releaseYear = rs.getInt("release_year");
-            int genreId = rs.getInt("genre_id");
+            String genre = rs.getString("genre");
             double rating = rs.getDouble("rating");
             String director = rs.getString("director");
+            String poster = rs.getString("poster");
+            String plot = rs.getString("plot");
 
-            Movie movie = new Movie(id, title,releaseYear,genreId, rating, director );
+            Movie movie = new Movie(id, title,releaseYear, genre, rating, director, poster, plot );
             return movie;
         }
 
