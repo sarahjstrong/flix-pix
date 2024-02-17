@@ -8,14 +8,13 @@
         <h2>{{ movie.director }}</h2>
         <h3>{{ movie.releaseYear }}</h3>
         <!-- Try and get stars to display rating -->
-        <div>{{ movie.rating }}</div>
         <p>{{ movie.synopsis }}</p>
     </div>
 
-    <div class="user-rating" v-show="userRated">
-        <h4>You rated this movie: {{ rating }}</h4>
-        <p>{{ review }}</p>
+    <div>
+        <!-- Rating component here -->
     </div>
+
 
     <div class="favorite" v-on:click="favoriteMovie">
         <img src="../assets/images/heart.png" alt="heart">
@@ -29,8 +28,7 @@
         props: ['movie'],
         data() {
             return {
-                userRating: [],
-                userRated: false,
+
             }
         },
         methods: {

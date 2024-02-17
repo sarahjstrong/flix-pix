@@ -1,11 +1,15 @@
 <template>
     <router-link :to="{ name: 'movie', params: { movieId:movie.id } }">
         <div class="movie-card">
-            <h2 class="movie-title">{{ movie.title }}</h2>
-            <p class="movie-director">Dir. {{ movie.director }}</p>
-            <p class="movie-year">r. {{ movie.releaseYear }}</p>
-        <img class="movie-thumbnail" :src="movie.img" alt="">
-    </div>
+            <div class="img">
+                <img class="movie-thumbnail" :src="movie.img" alt="">
+            </div>
+            <div class="info">
+                <h2 class="movie-title">{{ movie.title }}</h2>
+                <p class="movie-director">Dir. {{ movie.director }}</p>
+                <p class="movie-year">r. {{ movie.releaseYear }}</p>
+            </div>
+        </div>
     </router-link>
 
 

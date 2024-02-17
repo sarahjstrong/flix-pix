@@ -32,6 +32,8 @@ public class Movie {
         this.genre=genre;
         this.rating = rating;
         this.director = director;
+        this.poster = poster;
+        this.plot = plot;
     }
 
     public Movie(String title, int releaseYear, String imdbId, String poster) {
