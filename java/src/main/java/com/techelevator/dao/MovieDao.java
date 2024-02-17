@@ -15,5 +15,7 @@ public interface MovieDao {
 
     public List<Movie> getMoviesByRating(String rating);
 
+    public Movie addMovie(Movie movie);
+
 }
 
