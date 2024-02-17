@@ -41,11 +41,13 @@ public class JdbcMovieDao implements MovieDao{
             int id = rs.getInt("movie_id");
             String title = rs.getString("title");
             int releaseYear = rs.getInt("release_year");
-            int genreId = rs.getInt("genre_id");
+            String genre = rs.getString("genre");
             double rating = rs.getDouble("rating");
             String director = rs.getString("director");
+            String poster = rs.getString("poster");
+            String plot = rs.getString("plot");
 
-            Movie movie = new Movie(id, title,releaseYear,genreId, rating, director );
+            Movie movie = new Movie(id, title,releaseYear, genre, rating, director, poster, plot );
             return movie;
         }
 

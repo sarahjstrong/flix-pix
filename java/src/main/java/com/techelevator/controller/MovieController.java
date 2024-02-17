@@ -100,13 +100,14 @@ public class MovieController {
             int movieId = 1;
             String movieTitle = jsonNode.path("Title").asText();
             int releaseYear = jsonNode.path("Year").asInt();
-            int genreId = 1;
+            String genre = jsonNode.path("Genre").asText();
             Double rating = jsonNode.path("imdbRating").asDouble();
             String director = jsonNode.path("Director").asText();
             String poster = jsonNode.path("Poster").asText();
+            String plot = jsonNode.path("Plot").asText();
 
 
-            newMovie = new Movie(movieId,movieTitle, releaseYear, genreId, rating, director);
+            newMovie = new Movie(movieId,movieTitle, releaseYear, genre, rating, director, poster, plot);
 
         } catch (JsonMappingException e) {
 
