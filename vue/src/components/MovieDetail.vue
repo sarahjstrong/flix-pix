@@ -11,7 +11,7 @@
         <p>{{ movie.synopsis }}</p>
     </div>
 
-    <div>
+    <div class="rating-component">
         <!-- Rating component here -->
     </div>
 
