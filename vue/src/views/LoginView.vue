@@ -75,7 +75,7 @@ export default {
 #login{
   border: 5px solid #dbdbdb; 
   border-radius: 7px;
-  background-color: rgb(255, 252, 244);
+  background-color: #FFF6D7;
   max-width: 400px; 
   max-height: 700px; 
   margin: auto; 
