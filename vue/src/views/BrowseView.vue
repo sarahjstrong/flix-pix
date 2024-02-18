@@ -66,4 +66,5 @@ export default {
         color: #dbbe4b;
         text-align: center;
     }
+    
 </style>

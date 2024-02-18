@@ -29,41 +29,51 @@
 </script>
 
 <style scoped>
-    .movie-year{
-        font-style: italic;
-    }
+.movie-card {
+    display: flex;
+    /* width: 100%; */
+    /* margin-bottom: 20px; */
+    border: 2px solid #893222;
+    border-radius: 10px;
+    overflow: hidden;
+}
 
-    .movie-card{
-        display: flex;
-        flex-direction: column;
-        width: 20%;
-        margin: 25px;
-        padding: 20px;
-        border: 2px solid #893222;
-        border-radius: 1%;
-        align-items: center;
-        justify-items: center;
-        /* flex: 1; */
-    }
+.img {
+    margin-right: 40px; 
+    max-width: 250px;
+    margin-left: 0px;
+    border-radius: 10px 0 0 10px;
+    /* margin-bottom: 90vh; */
+}
 
-    .movie-thumbnail{
-        height: 50%;
-        widows: 50%;
-    }
+.info {
+    flex: 0 0 60%;
 
-    .info-btn{
-        margin-top: 10px;
-        width: 400px;
-        height: 30px;
-        font-size: 16px;
-    }
+    padding: 0px;
+}
 
-    .movie-title{
-        margin-bottom: 0px;
-    }
+.movie-title {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
 
-    .movie-director{
-        margin-bottom: 0px;
-    }
+.movie-details {
+    margin-bottom: 10px;
+}
 
+.more-info-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #893222;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.more-info-btn:hover {
+    background-color: #6e261b;
+}
 </style>
