@@ -10,7 +10,6 @@ export default {
     HomeHeader
   },
   created() {
-    this.$store.commit('ADD_MOVIES');
  }
 };
 </script>

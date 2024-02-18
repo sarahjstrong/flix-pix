@@ -34,15 +34,23 @@ public class MovieController {
     public MovieController(MovieDao movieDao) {
         this.movieDao = movieDao;}
 
-//    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(path= "/movies", method = RequestMethod.POST)
-    public Movie addMovie(@Valid @RequestBody Movie movie) {
+    public Movie addMovie(@RequestBody Movie movie) {
+        System.out.println(movie);
         Movie addedMovie = movieDao.addMovie(movie);
         if (addedMovie == null) {
             throw new DaoException("Error adding movie");
         } else {
             return addedMovie;
         }
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequestMapping(path="/movies/{id}", method = RequestMethod.DELETE)
+    public void deleteMovie(@PathVariable int id) {
+        movieDao.deleteMovie(id);
     }
 
     @RequestMapping(path = "/movies", method = RequestMethod.GET)

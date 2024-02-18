@@ -15,6 +15,6 @@ export default {
     },
 
     addNewMovie(movie) {
-        return axios.post('/movies');
+        return axios.post('/movies', movie);
     }
 }
