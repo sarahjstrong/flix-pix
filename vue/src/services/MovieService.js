@@ -16,5 +16,13 @@ export default {
 
     addNewMovie(movie) {
         return axios.post('/movies', movie);
+    },
+
+    deleteMovie(id) {
+        return axios.delete('/movies/' + id);
+    },
+
+    getMovieById(id) {
+        return axios.get('/movies/' + id);
     }
 }
