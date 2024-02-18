@@ -1,4 +1,5 @@
 <template>
+    <!-- {{ this.$store.state.user.id }} {{ movie.movieId }} -->
     <movie-detail v-bind:movie="movie"></movie-detail>
 </template>
 

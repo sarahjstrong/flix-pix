@@ -46,7 +46,7 @@ public class JdbcFavoriteDao implements FavoriteDao {
     public Favorite getFavoriteByUserIdAndMovieId(int userId, int movieId) {
         Favorite favorite = null;
         try {
-            String sql = "SELECT favorite_id WHERE user_id = ? AND movie_id = ?";
+            String sql = "SELECT * FROM favorites WHERE user_id = ? AND movie_id = ?";
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId, movieId);
             if(results.next()) {
                 favorite = mapRowToFavorite(results);

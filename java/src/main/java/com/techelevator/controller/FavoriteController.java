@@ -4,6 +4,7 @@ import com.techelevator.dao.FavoriteDao;
 import com.techelevator.model.Favorite;
 import com.techelevator.model.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class FavoriteController {
     }
 
     @RequestMapping(path = "/user-favorite/{userId}/{movieId}", method = RequestMethod.GET)
-    public Favorite getFavoriteByUserIdAndMovieId(@PathVariable int userId, int movieId) {
+    public Favorite getFavoriteByUserIdAndMovieId(@PathVariable int userId, @PathVariable int movieId) {
         return favoriteDao.getFavoriteByUserIdAndMovieId(userId, movieId);
     }
 
@@ -40,7 +41,7 @@ public class FavoriteController {
     public Favorite addFavorite(@RequestBody Favorite favoriteToAdd) {
         return favoriteDao.addFavorite(favoriteToAdd);}
 
-
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(path = "/delete-favorite/{favoriteId}", method = RequestMethod.DELETE)
     public void deleteFavorite(@PathVariable int favoriteId) {
         favoriteDao.deleteFavorite(favoriteId);}}

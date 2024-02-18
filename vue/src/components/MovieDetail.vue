@@ -1,4 +1,7 @@
 <template>
+    <!-- {{ isFavorited }}
+
+    {{ thisFav }} -->
     <div class="movie-img">
         <img :src="movie.poster" alt="">
     </div>
@@ -16,51 +19,77 @@
     </div>
 
 
-    <div class="favorite" v-on:click="favoriteMovie">
-        <img src="../assets/images/heart.png" alt="heart" class="favorite-heart">
-        <p>{{ favoriteStatus }}</p>
+    <div class="favorite">
+        <h1 :class="(isFavorited) ? 'heart fav' : 'heart reg'" v-on:click="toggleFavorite">♥</h1>
+        <p>{{ textStatus }}</p>
     </div>
 </template>
 
 <script>
+    import FavService from '../services/FavService'
     export default{
         props: ['movie'],
         data() {
             return {
+                hasReview: '',
+                thisFav: '',
+                isFavorited: false,
 
             }
         },
         methods: {
-            favoriteMovie() {
-                if(this.$store.state.token != '') {
-                    if(this.favoriteStatus === 'Favorite') {
-                        this.$store.commit('ADD_MOVIE_TO_FAV', movie.id);
-                    } else {
-                        this.$store.commit('DELETE_MOVIE_FROM_FAV', movie.id);
-                    }
+            toggleFavorite() {
+                if(this.isFavorited === false) {
+                    const newFav = {};
+                    newFav.userId = this.$store.state.user.id;
+                    newFav.movieId = this.movie.movieId;
+                    FavService.addFavorite(newFav).then(response => {
+                        this.isFavorited = true;
+                    }).catch(error => {
+
+                    });
                 } else {
-                    this.$router.push({ name: 'register' })
+                    FavService.deleteFavorite(parseInt(this.thisFav.favoriteId)).then(response => {
+                        if(response.status === 204) {
+                            this.isFavorited = false;
+                        }
+                    });
                 }
             }
         },
         computed: {
-            favoriteStatus() {
-                // Make call to favorite service to receive list of all favorited movies
-                // If favorited list DOES NOT contain current movie
-                    return 'Favorite'
-                // if not
-                    // return '✓'
-            }
+            textStatus() {
+                if(this.isFavorited === true) {
+                    return '✓ Added'
+                } else {
+                    return 'Add'
+                }
+            },
         },
         created() {
+            FavService.getFavsByUserId(this.$store.state.user.id).then( response => {
+                    if(response.status === 200) {
+                        const userFavs = response.data;
+                        let match = userFavs.find(curFav => curFav.movieId === this.movie.movieId);
+                        if(match != undefined) {
+                            this.isFavorited = true;
+                        }
+                        this.thisFav = match;
 
+                    }
+                    });
+                    
+      
         }
     }
 
 </script>
 
 <style scoped>
-    .favorite-heart{
-        width: 3%;
+    .heart{
+        font-size: 5rem;
+        cursor: pointer;
     }
+
+
 </style>
