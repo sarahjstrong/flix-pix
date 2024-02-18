@@ -3,9 +3,9 @@
         <h2>Find Your Next Favorite Film...</h2>
         <search-bar></search-bar>
         <!--TODO : Debug remove-->
-        <!-- <div>HI{{ filteredMovies }}</div> -->
+        <!-- {{ filteredMovies }} -->
     </div>
-    <div class="movies-list" v-show="activeSearch">
+    <div class="movies-list">
         <browse-list v-bind:movies="filteredMovies"></browse-list>
     </div>
     
@@ -24,43 +24,37 @@ export default {
     },
     data() {
         return {
-            movies: this.$store.state.movies,
+            movies: [],
         }
     },
     computed: {
         filteredMovies() {
-            const searchTerm = this.$store.state.browseSearchTerm;
-            const matchText = searchTerm.toLowerCase();
+            const searchTerm = this.$store.state.browseSearchTerm.toLowerCase();
             const filterBy = this.$store.state.filterBy;
-            if(filterBy === 'Director') {
-                return this.movies.filter( movie => {
-                    return movie.director.toLowerCase().includes(matchText);
-                })
-            } else if(filterBy === "Title") {
-                return this.movies.filter( movie => {
-                    return movie.title.toLowerCase().includes(matchText);
-                })
-            } else {
-                return this.movies.filter( movie => {
-                    return movie.director.toLowerCase().includes(matchText) || movie.title.toLowerCase().includes(matchText);
+            if(filterBy === 'director') {
+                let filtered = this.movies.filter( movie => {
+                    return movie.director.toLowerCase().includes(searchTerm)
                 });
+                return filtered;
+            } else if(filterBy === "title") {
+                let filtered = this.movies.filter( movie => {
+                    return movie.title.toLowerCase().includes(searchTerm)
+                });
+                return filtered;
+            } else {
+                let filtered = this.movies.filter( movie => {
+                    return (movie.director.toLowerCase().includes(searchTerm) || movie.title.toLowerCase().includes(searchTerm))
+                });
+                return filtered;
             }
         },
-        activeSearch() {
-                if(this.$store.state.searchTerm != '') {
-                    return true;
-                } else {
-                    return false;
-                }
-        }
     },
     methods: {
-        addMoviesFromDatabase() {
-            this.$store.commit('ADD_MOVIES_FROM_DATABASE')
-        }
     },
     created() {
-        this.addMoviesFromDatabase();
+        MovieService.getMovies().then( response => {
+            this.movies = response.data;
+        })
     }
     
 }

@@ -1,16 +1,17 @@
 <template>
-    <router-link :to="{ name: 'movie', params: { movieId:movie.id } }">
         <div class="movie-card">
             <div class="img">
-                <img class="movie-thumbnail" :src="movie.img" alt="">
+                <img class="movie-thumbnail" :src="movie.poster" alt="">
             </div>
             <div class="info">
                 <h2 class="movie-title">{{ movie.title }}</h2>
                 <p class="movie-director">Dir. {{ movie.director }}</p>
                 <p class="movie-year">r. {{ movie.releaseYear }}</p>
             </div>
+            <div class="info-btn">
+                <button v-on:click="getMoreDetails">More Details</button>
+            </div>
         </div>
-    </router-link>
 
 
 </template>
@@ -19,8 +20,8 @@
     export default {
         props: ["movie"],
         methods: {
-           moreInfo(id) {
-                this.$router.push( {name: 'movie', params: { movieId: id}} );
+           getMoreDetails() {
+                this.$router.push( {name: 'movie', params: { movieId: this.movie.movieId}} );
            }
         }
         

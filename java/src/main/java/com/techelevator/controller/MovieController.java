@@ -69,8 +69,6 @@ public class MovieController {
     }
 
 
-
-    @RequestMapping(path = "/movie/{id}", method = RequestMethod.GET)
     public Movie getMovieById(@PathVariable int id) {
         return movieDao.getMovieById(id);
     }

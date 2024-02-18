@@ -1,6 +1,6 @@
 <template>
     <div class="movie-img">
-        <img :src="movie.img" alt="">
+        <img :src="movie.poster" alt="">
     </div>
 
     <div class="movie-info">
@@ -11,19 +11,18 @@
         <p>{{ movie.synopsis }}</p>
     </div>
 
-    <div>
+    <div class="rating-component">
         <!-- Rating component here -->
     </div>
 
 
     <div class="favorite" v-on:click="favoriteMovie">
-        <img src="../assets/images/heart.png" alt="heart">
+        <img src="../assets/images/heart.png" alt="heart" class="favorite-heart">
         <p>{{ favoriteStatus }}</p>
     </div>
 </template>
 
 <script>
-
     export default{
         props: ['movie'],
         data() {
@@ -54,8 +53,14 @@
             }
         },
         created() {
-            this.getRating();
+
         }
     }
 
 </script>
+
+<style scoped>
+    .favorite-heart{
+        width: 3%;
+    }
+</style>

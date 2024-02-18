@@ -1,11 +1,13 @@
 <template>
-    <div class="card-list" v-show="totalResults > 0">
-        <movie-card class="card" v-for="(movie, index) in movies" v-bind:key=index v-bind:movie="movie"></movie-card>
-    </div>
+        <div class="card" v-for="(movie, index) in movies" v-bind:key=index>
+                <movie-card class="card" v-bind:movie="movie"></movie-card>
+        </div>
+        
 
-    <div class="no-results" v-show="totalResults === 0 && this.$store.state.browseSearchTerm != ''">
+
+
         <h3>No movies match your search</h3>
-    </div>
+
     </template>
 
 <script>

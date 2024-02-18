@@ -1,6 +1,10 @@
 <template>
         <div class="movie-card">
-            {{ this.$store.state.user.authorities[0].name }}
+            <!-- {{ this.$store.state.user.authorities[0].name }} -->
+            <!-- {{ movies }}
+            {{ movieOnSite }} -->
+            <!-- {{ movie }} -->
+
             <img class="movie-thumbnail" :src='movie.poster' alt="">
             <div class="info-container">
                 <div class="movie-text">
@@ -44,27 +48,44 @@
         },
         methods: {
            updateMoviesOnSite() {
-                this.movieToAdd.title = this.movie.title;
-                this.movieToAdd.releaseYear = this.movie.releaseYear;
-                this.movieToAdd.genre = this.movie.genre;
-                this.movieToAdd.director = this.movie.director;
-                this.movieToAdd.poster = this.movie.poster;
-                this.movieToAdd.plot = this.movie.plot;
-                // console.log(this.movieToAdd);
-                MovieService.addNewMovie(this.movieToAdd).then(response => {
-                    this.movies.push(this.movieToAdd);
-                }).catch( error => {
+                if(this.movieOnSite === true) {
+                    this.movies.forEach(curMovie => {
+                        if(curMovie.title === this.movie.title) {
+                            this.movieToAdd.movieId = curMovie.movieId;
+                        }
+                    });
+                    MovieService.deleteMovie(this.movieToAdd.movieId).then(response => {
+                        if(response.status === 204) {
+                            MovieService.getMovies().then( response => {
+                                this.movies = response.data;
+                            })
+                        }
+                    })
+                } else {
+                    this.movieToAdd.title = this.movie.title;
+                    this.movieToAdd.releaseYear = this.movie.releaseYear;
+                    this.movieToAdd.genre = this.movie.genre;
+                    this.movieToAdd.director = this.movie.director;
+                    this.movieToAdd.poster = this.movie.poster;
+                    this.movieToAdd.plot = this.movie.plot;
+                    // console.log(this.movieToAdd);
+                    MovieService.addNewMovie(this.movieToAdd).then(response => {
+                        this.movies.push(this.movieToAdd);
+                    }).catch( error => {
 
-                })
+                    })
+                }
+
            }
         },
         computed: {
             movieOnSite() {
-                if(this.movies.filter( curMovie => curMovie.title === this.movieToAdd.title).length > 0) {
+                if (this.movies.filter( curMovie => curMovie.title === this.movie.title).length > 0) {
                     return true;
                 } else {
                     return false;
                 }
+                
             },
             addBtn() {
                 if(this.movieOnSite === true) {
@@ -77,9 +98,7 @@
         },
         created() {
             MovieService.getMovies().then( response => {
-                if(response === 200) {
                     this.movies = response.data;
-                }
             })
         }
     }
