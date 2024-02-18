@@ -8,6 +8,7 @@ public interface FavoriteDao {
 
     public List<Favorite> getAllFavorites();
 
+    public Favorite getFavoriteByUserIdAndMovieId(int userId, int movieId);
 
     public List<Favorite> getFavoritesByUserId(int userId);
 

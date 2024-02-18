@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.UserRating;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -63,6 +64,23 @@ public class JdbcUserRatingDao implements UserRatingDao {
             }
             return userRatings;
         }
+
+    @Override
+    public UserRating getUserRatingByMovie(int userId, int movieId) {
+        UserRating userRating = null;
+        try {
+            String sql = "SELECT user_rating WHERE user_id = ? AND movie_id = ?";
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId, movieId);
+            if(results.next()) {
+                userRating = mapRowToUserRating(results);
+            }
+        } catch (DataAccessException e) {
+            throw new RuntimeException(e);
+        }
+        return userRating;
+    }
+
+
     @Override
     public UserRating addUserRating(UserRating userRating) {
         try {

@@ -9,7 +9,7 @@ public interface UserRatingDao {
 
    public  List<UserRating> getUserRatingsByUsername(String username);
 
-
+   public  UserRating getUserRatingByMovie(int userId, int movieId);
 
    public UserRating addUserRating(UserRating userRating);
 

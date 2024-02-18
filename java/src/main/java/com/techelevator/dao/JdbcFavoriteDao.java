@@ -2,6 +2,8 @@ package com.techelevator.dao;
 
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Favorite;
+import com.techelevator.model.UserRating;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -38,6 +40,21 @@ public class JdbcFavoriteDao implements FavoriteDao {
         int movieId = rs.getInt("movie_id");
         return new Favorite(favoriteId, userId, movieId);
 
+    }
+
+    @Override
+    public Favorite getFavoriteByUserIdAndMovieId(int userId, int movieId) {
+        Favorite favorite = null;
+        try {
+            String sql = "SELECT user_rating WHERE user_id = ? AND movie_id = ?";
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId, movieId);
+            if(results.next()) {
+                favorite = mapRowToFavorite(results);
+            }
+        } catch (DataAccessException e) {
+            throw new RuntimeException(e);
+        }
+        return favorite;
     }
 
 

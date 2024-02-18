@@ -26,6 +26,11 @@ public class FavoriteController {
         return favoriteDao.getAllFavorites();
     }
 
+    @RequestMapping(path = "/user-favorite/{userId}/{movieId}", method = RequestMethod.GET)
+    public Favorite getFavoriteByUserIdAndMovieId(@PathVariable int userId, int movieId) {
+        return favoriteDao.getFavoriteByUserIdAndMovieId(userId, movieId);
+    }
+
     @RequestMapping(path = "/user-favorites/{userId}", method = RequestMethod.GET)
     public List<Favorite> getFavoritesByUserId(@PathVariable int userId) {
         return favoriteDao.getFavoritesByUserId(userId);

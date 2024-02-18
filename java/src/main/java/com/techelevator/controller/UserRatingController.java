@@ -28,6 +28,12 @@ public class UserRatingController {
         return userRatingDao.getUserRatingsByUsername(username);
     }
 
+    @RequestMapping(path = "user-movie-rating/{userId}/{movieId", method = RequestMethod.GET)
+    public UserRating getUserRatingByMovie (@PathVariable int userId, int movieId) {
+        return userRatingDao.getUserRatingByMovie(userId, movieId);
+    }
+
+
     @RequestMapping(path = "/add-user-rating", method = RequestMethod.POST)
     public UserRating addUserRating(@RequestBody UserRating userRating) {
         return userRatingDao.addUserRating(userRating);
@@ -42,4 +48,9 @@ public class UserRatingController {
     public void deleteUserRating(@PathVariable int ratingId) {
         userRatingDao.deleteUserRating(ratingId);
     }
+
+
+
+
+
 }
