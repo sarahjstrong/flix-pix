@@ -8,17 +8,13 @@ import com.techelevator.dao.MovieDao;
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import services.OMDBService;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -28,7 +24,7 @@ public class MovieController {
 
 @Autowired
     private MovieDao movieDao;
-    OMDBService omdbService;
+
 
 
     public MovieController(MovieDao movieDao) {
@@ -61,16 +57,6 @@ public class MovieController {
         return responseEntity.getBody().getSearch();
 
     }
-
-
-
-//    @ResponseStatus(code = HttpStatus.CREATED, reason = "Successfully added movie to database")
-//    @PostMapping(path = "api/movies/call_api")
-//    public int addMovieFromAPI(@RequestBody ImdbIdDto imdbId) {
-//        int returnedId = movieDao.addMovieFromAPI(imdbId.getImdbId());
-//        return returnedId;
-//    }
-
 
 
 
