@@ -22,7 +22,7 @@ public class JdbcMovieDao implements MovieDao{
     @Override
     public Movie addMovie(Movie movie) {
         try {
-            String sql = "INSERT INTO movies(title, release_year, director, genre, plot, poster_url) VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO movies(title, release_year, director, genre, plot, poster_url) VALUES (?, ?, ?, ?, ?, ?) RETURNING movie_id";
             int newMovieId = jdbcTemplate.queryForObject(sql, int.class, movie.getTitle(), movie.getReleaseYear(), movie.getDirector(), movie.getGenre(), movie.getPlot(), movie.getPoster());
             movie.setMovieId(newMovieId);
             return movie;
@@ -32,6 +32,12 @@ public class JdbcMovieDao implements MovieDao{
             throw new DaoException("Data integrity violation", e);
         }
 
+    }
+
+    @Override
+    public void deleteMovie(int id) {
+        String sql = "DELETE FROM movies WHERE movie_id = ?;";
+        jdbcTemplate.update(sql, id);
     }
 
 
@@ -60,7 +66,7 @@ public class JdbcMovieDao implements MovieDao{
             String genre = rs.getString("genre");
             double rating = rs.getDouble("rating");
             String director = rs.getString("director");
-            String poster = rs.getString("poster");
+            String poster = rs.getString("poster_url");
             String plot = rs.getString("plot");
 
             Movie movie = new Movie(id, title,releaseYear, genre, rating, director, poster, plot );

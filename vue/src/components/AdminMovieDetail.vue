@@ -1,5 +1,6 @@
 <template>
         <div class="movie-card">
+            {{ this.$store.state.user.authorities[0].name }}
             <img class="movie-thumbnail" :src='movie.poster' alt="">
             <div class="info-container">
                 <div class="movie-text">
@@ -22,32 +23,55 @@
 <script>
     import MovieService from '../services/MovieService';
     export default {
-        props: ["movie"],
+        props: {
+            movie: {
+                type: Object,
+                required: true,
+            }
+        },
         data() {
             return {
                 movies: [],
                 movieToAdd: {
-                    title: this.movie.title,
-                    releaseYear: this.movie.releaseYear,
-                    genre: this.movie.genre,
-                    director: this.movie.director,
-                    poster: this.movie.poster,
-                    plot: this.movie.plot,
+                    title: '',
+                    releaseYear: '',
+                    genre: '',
+                    director: '',
+                    poster: '',
+                    plot: ''
                 },
             }
         },
         methods: {
            updateMoviesOnSite() {
+                this.movieToAdd.title = this.movie.title;
+                this.movieToAdd.releaseYear = this.movie.releaseYear;
+                this.movieToAdd.genre = this.movie.genre;
+                this.movieToAdd.director = this.movie.director;
+                this.movieToAdd.poster = this.movie.poster;
+                this.movieToAdd.plot = this.movie.plot;
+                // console.log(this.movieToAdd);
                 MovieService.addNewMovie(this.movieToAdd).then(response => {
-
+                    this.movies.push(this.movieToAdd);
                 }).catch( error => {
 
                 })
            }
         },
         computed: {
+            movieOnSite() {
+                if(this.movies.filter( curMovie => curMovie.title === this.movieToAdd.title).length > 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            },
             addBtn() {
-                return 'Add Movie';
+                if(this.movieOnSite === true) {
+                    return 'Remove From Site';
+                } else {
+                    return 'Add To Site';
+                }
             },
 
         },

@@ -25,6 +25,9 @@ public class Movie {
 
     private String plot;
 
+    public Movie() {
+    }
+
     public Movie(int movieId, String title, int releaseYear, String genre, Double rating, String director, String poster, String plot) {
         this.movieId = movieId;
         this.title = title;
@@ -44,7 +47,16 @@ public class Movie {
 
     }
 
-//    public String getImdbID() {
+    public Movie(String title, int releaseYear, String genre, String director, String poster, String plot) {
+        this.title = title;
+        this.releaseYear = releaseYear;
+        this.genre = genre;
+        this.director = director;
+        this.poster = poster;
+        this.plot = plot;
+    }
+
+    //    public String getImdbID() {
 //        return imdbID;
 //    }
 //
