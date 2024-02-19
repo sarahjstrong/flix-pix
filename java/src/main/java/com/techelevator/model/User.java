@@ -20,6 +20,14 @@ public class User {
 
    private String aboutMe;
 
+   public String getLocation() {
+      return location;
+   }
+
+   public String getAboutMe() {
+      return aboutMe;
+   }
+
    public void setLocation(String location) {
       this.location = location;
    }

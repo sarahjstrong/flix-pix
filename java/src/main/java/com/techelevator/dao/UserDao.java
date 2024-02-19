@@ -16,4 +16,6 @@ public interface UserDao {
     User createUser(RegisterUserDto user);
 
     String getUserRoleByUsername(String username);
+
+    User updateUser(User userToUpdate);
 }

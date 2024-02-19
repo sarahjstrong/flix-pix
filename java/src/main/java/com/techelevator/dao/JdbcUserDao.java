@@ -89,6 +89,17 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
+    public User updateUser(User userToUpdate) {
+        try {
+            String sql = "UPDATE users SET username = ?, password_hash = ?, role = ?, location = ?, about_me = ? WHERE user_id = ?";
+            jdbcTemplate.update(sql, userToUpdate.getUsername(), userToUpdate.getPassword(), userToUpdate.getAuthorities(), userToUpdate.getLocation(), userToUpdate.getAboutMe());
+            return getUserById(userToUpdate.getId());
+        } catch (Exception e) {
+            throw new DaoException("Error updating user", e);
+        }
+    }
+
+    @Override
     public String getUserRoleByUsername(String username) {
         String sql = "SELECT role FROM users WHERE username = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username);
