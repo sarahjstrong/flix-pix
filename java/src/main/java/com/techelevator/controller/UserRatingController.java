@@ -28,8 +28,8 @@ public class UserRatingController {
         return userRatingDao.getUserRatingsByUsername(username);
     }
 
-    @RequestMapping(path = "user-movie-rating/{userId}/{movieId", method = RequestMethod.GET)
-    public UserRating getUserRatingByMovie (@PathVariable int userId, int movieId) {
+    @RequestMapping(path = "user-movie-rating/{userId}/{movieId}", method = RequestMethod.GET)
+    public UserRating getUserRatingByMovie (@PathVariable int userId, @PathVariable int movieId) {
         return userRatingDao.getUserRatingByMovie(userId, movieId);
     }
 

@@ -69,7 +69,7 @@ public class JdbcUserRatingDao implements UserRatingDao {
     public UserRating getUserRatingByMovie(int userId, int movieId) {
         UserRating userRating = null;
         try {
-            String sql = "SELECT user_rating WHERE user_id = ? AND movie_id = ?";
+            String sql = "SELECT * FROM user_rating WHERE user_id = ? AND movie_id = ?";
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId, movieId);
             if(results.next()) {
                 userRating = mapRowToUserRating(results);
@@ -85,7 +85,7 @@ public class JdbcUserRatingDao implements UserRatingDao {
     public UserRating addUserRating(UserRating userRating) {
         try {
             String sql = "INSERT INTO user_rating (user_id, movie_id, rating, review) VALUES (?, ?, ?, ?) RETURNING rating_id";
-            int ratingId = jdbcTemplate.queryForObject(sql, Integer.class, userRating.getUserId(), userRating.getMovieId(), userRating.getRating(), userRating.getReview());
+            int ratingId = jdbcTemplate.queryForObject(sql, int.class, userRating.getUserId(), userRating.getMovieId(), userRating.getRating(), userRating.getReview());
             userRating.setRatingId(ratingId);
             return userRating;
         } catch (Exception e) {
