@@ -24,5 +24,6 @@ export default {
 
     getMovieById(id) {
         return axios.get('/movies/' + id);
-    }
+    },
+
 }

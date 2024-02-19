@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Friends;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -63,6 +64,8 @@ public class JdbcFriendsDao implements FriendsDao{
         String sql = "INSERT INTO friends (user_id_1, user_id_2) VALUES (?, ?)";
         try {
             jdbcTemplate.update(sql, friendsToAdd.getUserId1(), friendsToAdd.getUserId2());
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Friend relationship already exists", e);
         } catch (Exception e) {
             throw new DaoException("Error adding friend", e);
         }
@@ -72,7 +75,7 @@ public class JdbcFriendsDao implements FriendsDao{
     @Override
     public void deleteFriend(int userId1, int userId2) {
 
-        String sql = "DELETE FROM friends WHERE user_id_1 = ? OR user_id_2 = ?";
+        String sql = "DELETE FROM friends WHERE (user_id_1 = ? AND user_id_2 = ?) OR (user_id_1 = ? AND user_id_2 = ?)";
         try {
             jdbcTemplate.update(sql, userId1, userId2,  userId2, userId1);
         } catch (Exception e) {

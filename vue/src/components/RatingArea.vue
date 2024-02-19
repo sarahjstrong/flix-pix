@@ -4,7 +4,6 @@
     {{ this.$store.state.user.username }} -->
         <!-- {{ newReview }} -->
     <div class="user-rating" v-show="isReviewed === true">
-        {{ thisReview }}
         <div class="view-rating" v-show="showEditForm === false">
             <h1 style="font-family: 'mont';">you rated this movie:</h1>
 
@@ -16,8 +15,7 @@
             <button class="delete-review-btn" v-on:click="deleteReview">Delete</button>
         </div>
 
-        <div class="edit-rating" v-show="showEditForm === true">
-            {{ reviewInEdit }}
+        <div class="edit-rating" v-show="showEditForm === true"> -->
             <h1 style="font-family: 'mont';">edit your rating:</h1>
             <div>
                 <h2 class="star-rating icon">★ </h2>
@@ -37,6 +35,10 @@
 
     <div class="leave-review" v-show="isReviewed === false">
         <h1 style="font-family: 'mont';">Leave a review!</h1>
+        <div>
+            <h2 class="star-rating icon">★ </h2>
+            <h2 class="star-rating number">{{ newReview.rating }}</h2>
+        </div>
         <input type="range" min="0" max="5" step=".5" v-model="newReview.rating"/>
         <input type="text" class="new-review" v-model="newReview.review">
         <button class="new-review-save" v-on:click="addReview">Save</button>
