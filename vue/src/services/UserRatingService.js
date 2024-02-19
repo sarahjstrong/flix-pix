@@ -12,6 +12,10 @@ export default {
 
     updateReview(updatedRating) {
         return axios.put('/update-user-rating', updatedRating);
+    },
+
+    addReview(newReview) {
+        return axios.post('/add-user-rating', newReview);
     }
 
 }

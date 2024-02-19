@@ -2,8 +2,9 @@
     <!-- {{ this.$store.state.user }}
     {{ isReviewed }}
     {{ this.$store.state.user.username }} -->
-        {{ reviewInEdit }}
+        <!-- {{ newReview }} -->
     <div class="user-rating" v-show="isReviewed === true">
+        {{ thisReview }}
         <div class="view-rating" v-show="showEditForm === false">
             <h1 style="font-family: 'mont';">you rated this movie:</h1>
 
@@ -16,6 +17,7 @@
         </div>
 
         <div class="edit-rating" v-show="showEditForm === true">
+            {{ reviewInEdit }}
             <h1 style="font-family: 'mont';">edit your rating:</h1>
             <div>
                 <h2 class="star-rating icon">★ </h2>
@@ -34,12 +36,11 @@
 
 
     <div class="leave-review" v-show="isReviewed === false">
-        {{ this.newReview }}
         <h1 style="font-family: 'mont';">Leave a review!</h1>
         <input type="range" min="0" max="5" step=".5" v-model="newReview.rating"/>
         <input type="text" class="new-review" v-model="newReview.review">
         <button class="new-review-save" v-on:click="addReview">Save</button>
-        <button class="new-review-cancel" v-on:click="newReview = ''">Clear</button>
+        <button class="new-review-cancel" v-on:click="clearNewReview">Clear</button>
     </div>
 </template>
 
@@ -53,6 +54,8 @@
         data() {
             return {
                 newReview: {
+                    userId: '',
+                    movieId: '',
                     rating: 0,
                     review: ''
                 },
@@ -71,6 +74,8 @@
                     if(response.status === 204) {
                         this.thisReview = '';
                         this.reviewInEdit = '';
+                        this.newReview.rating = 0;
+                        this.newReview.review = '';
                         this.isReviewed = false;
                     }
                 })
@@ -82,6 +87,22 @@
                         this.showEditForm = false;
                     }
                 })
+            },
+            addReview() {
+                this.newReview.userId = this.$store.state.user.id;
+                this.newReview.movieId = this.movie.movieId;
+                UserRatingService.addReview(this.newReview).then(response => {
+                    if(response.status === 200) {
+                        this.isReviewed = true;
+                        this.thisReview = response.data;
+                        this.reviewInEdit = response.data;
+
+                    }
+            })
+            },
+            clearNewReview() {
+                this.newReview.rating = 0;
+                this.newReview.review = '';
             }
         },
         created() {
