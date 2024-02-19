@@ -2,36 +2,46 @@
     <!-- {{ isFavorited }}
 
     {{ thisFav }} -->
-    <div class="movie-img">
-        <img :src="movie.poster" alt="">
-    </div>
+    <div class="movie-container">
+            <img  class="movie-img" :src="movie.poster" alt="">
 
-    <div class="movie-info">
-        <h1>{{ movie.title }}</h1>
-        <h2>{{ movie.director }}</h2>
-        <h3>{{ movie.releaseYear }}</h3>
+        <div class="movie-info">
+            <div class="favorite">
+                <h1 :class="(isFavorited) ? 'heart fav' : 'heart reg'" v-on:click="toggleFavorite">❤︎</h1>
+                <p class="btn-status">{{ textStatus }}</p>
+            </div>
+
+            <div class="movie-text">
+                <h1 style="font-family: 'mont';">{{ movie.title }}</h1>
+                <h3>{{ movie.releaseYear }} • Directed by</h3>
+                <h2>{{ movie.director }}</h2>
+            </div>
+        
+
         <!-- Try and get stars to display rating -->
-        <p>{{ movie.synopsis }}</p>
-    </div>
+            <p>{{ movie.plot }}</p>
+        </div>
 
     <div class="rating-component">
         <!-- Rating component here -->
+        <rating-area v-bind:movie="movie"></rating-area>
+    </div>
     </div>
 
 
-    <div class="favorite">
-        <h1 :class="(isFavorited) ? 'heart fav' : 'heart reg'" v-on:click="toggleFavorite">♥</h1>
-        <p>{{ textStatus }}</p>
-    </div>
+
 </template>
 
 <script>
     import FavService from '../services/FavService'
+    import RatingArea from './RatingArea.vue';
     export default{
         props: ['movie'],
+        components: {
+            RatingArea
+        },
         data() {
             return {
-                hasReview: '',
                 thisFav: '',
                 isFavorited: false,
 
@@ -87,9 +97,84 @@
 
 <style scoped>
     .heart{
-        font-size: 5rem;
+        font-size: 4rem;
         cursor: pointer;
+        margin-bottom: 15px;
     }
+
+    .heart.reg{
+        color: maroon;
+        opacity: 50%;
+    }
+
+    .heart.fav{
+        color: maroon;
+
+    }
+
+    .movie-container{
+        display: flex;
+        justify-content: space-between;
+        padding-top: 40px;
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+
+    .movie-img{
+        width: 20%;
+
+        box-shadow: 20px 20px 20px  rgba(0, 0, 0, 0.1);
+        border-radius: 1vh;
+        border: 5px solid #dbdbdb;
+    }
+
+    .movie-info{
+        width: 30%;
+        display: flex;
+        flex-direction: column;
+        background-color: #FFF6D7;
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-top: 10px;
+        box-shadow: 20px 20px 20px  rgba(0, 0, 0, 0.1);
+        border-radius: 1vh;
+        border: 5px solid #dbdbdb;
+    }
+
+    p{
+        font-size: 1.4em;
+        margin-top: 60px;
+        margin-bottom: 60px;
+    }
+
+    .btn-status{
+        margin-top: 0px;
+        font-size: 1.2rem;
+    }
+
+
+
+    .favorite{
+        display: flex;
+        flex-direction: column;
+        
+    }
+
+    .rating-component{
+        width: 30%;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        background-color: #FFF6D7;
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-top: 10px;
+        box-shadow: 20px 20px 20px  rgba(0, 0, 0, 0.1);
+        border-radius: 1vh;
+        border: 5px solid #dbdbdb;
+
+    }
+
 
 
 </style>

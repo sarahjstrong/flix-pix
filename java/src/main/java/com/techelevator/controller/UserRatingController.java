@@ -3,6 +3,7 @@ package com.techelevator.controller;
 import com.techelevator.dao.UserRatingDao;
 import com.techelevator.model.UserRating;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -44,6 +45,7 @@ public class UserRatingController {
         return userRatingDao.updateUserRating(userRating);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(path = "/delete-user-rating/{ratingId}", method = RequestMethod.DELETE)
     public void deleteUserRating(@PathVariable int ratingId) {
         userRatingDao.deleteUserRating(ratingId);
