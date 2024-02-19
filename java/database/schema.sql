@@ -43,7 +43,7 @@ BEGIN TRANSACTION;
 		rating_id SERIAL,
 		user_id INTEGER REFERENCES users(user_id),
 		movie_id INTEGER REFERENCES movies(movie_id),
-		rating INTEGER CHECK (rating >= 0 AND rating <= 5),
+		rating DECIMAL CHECK (rating >= 0 AND rating <= 5),
 		review TEXT,
 		CONSTRAINT PK_user_rating PRIMARY KEY (rating_id)
 	);
