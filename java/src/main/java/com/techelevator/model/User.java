@@ -1,6 +1,7 @@
 package com.techelevator.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -20,6 +21,7 @@ public class User {
 
    private String aboutMe;
 
+   @JsonProperty("location")
    public String getLocation() {
       return location;
    }
@@ -27,7 +29,7 @@ public class User {
    public String getAboutMe() {
       return aboutMe;
    }
-
+   @JsonProperty("location")
    public void setLocation(String location) {
       this.location = location;
    }
@@ -105,7 +107,7 @@ public class User {
             return authority.getName();
          }
       }
-      return null; // Return null if no matching role is found
+      return null;
    }
 
    @Override
