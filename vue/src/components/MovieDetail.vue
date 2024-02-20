@@ -8,7 +8,7 @@
         <div class="movie-info">
             <div class="favorite">
                 <h1 :class="(isFavorited) ? 'heart fav' : 'heart reg'" v-on:click="toggleFavorite">❤︎</h1>
-                <p class="btn-status">{{ textStatus }}</p>
+                <p class="btn-status" style="margin-left: 2%;">{{ textStatus }}</p>
             </div>
 
             <div class="movie-text">
@@ -99,18 +99,28 @@
     .heart{
         font-size: 4rem;
         cursor: pointer;
-        margin-bottom: 15px;
+        max-width: 60px;
+        /* margin-bottom: 15px; */
     }
 
     .heart.reg{
-        color: maroon;
+        color: rgb(243, 174, 174);
         opacity: 50%;
+        transition: transform 0.3s;
+        /* outline: orangered solid 2px; */
+
+        
+
+    }
+    .heart.reg:hover{
+        transform:scaleY(1.3)
     }
 
     .heart.fav{
         color: maroon;
 
     }
+    
 
     .movie-container{
         display: flex;
