@@ -15,7 +15,7 @@
             <button class="delete-review-btn" v-on:click="deleteReview">Delete</button>
         </div>
 
-        <div class="edit-rating" v-show="showEditForm === true"> -->
+        <div class="edit-rating" v-show="showEditForm === true"> 
             <h1 style="font-family: 'mont';">edit your rating:</h1>
             <div>
                 <h2 class="star-rating icon">★ </h2>
@@ -23,7 +23,7 @@
             </div>
 
             <input type="range" id="star-rating" min="0" max="5" step=".5" v-model="reviewInEdit.rating"/>
-            <input type="text" class="new-review" v-model="reviewInEdit.review">
+            <textarea type="text" class="new-review" v-model="reviewInEdit.review"></textarea>
             <button class="save-edit" v-on:click="updateRating">Save</button>
             <button class="edit-cancel">Cancel</button>
             
@@ -40,7 +40,7 @@
             <h2 class="star-rating number">{{ newReview.rating }}</h2>
         </div>
         <input type="range" min="0" max="5" step=".5" v-model="newReview.rating"/>
-        <input type="text" class="new-review" v-model="newReview.review">
+        <textarea type="text" placeholder="This Movie.." class="new-review" v-model="newReview.review"></textarea>
         <button class="new-review-save" v-on:click="addReview">Save</button>
         <button class="new-review-cancel" v-on:click="clearNewReview">Clear</button>
     </div>
@@ -151,4 +151,40 @@
         flex-direction: column;
         margin-bottom: 40px;
     }
-</style>
+    .edit-rating{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 40px;
+    }
+
+    button{
+        font-family: 'mont';
+        background-color: #893222;
+        color: #dbbe4b;
+        height: 36px;
+        /* border-radius: 20px; */
+        outline: none;
+        cursor: pointer;
+    
+        overflow: hidden;
+    }
+    
+    .new-review{
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 3px solid #893222;
+        -webkit-transition: 0.5s;
+        transition: 0.5s;
+        outline: none;
+
+    }
+    .new-review:focus{
+        border: 3px solid #dbbe4b;
+    }
+
+    ::placeholder{
+        color: rgb(177, 177, 228);
+    }   
+    </style>
