@@ -33,5 +33,13 @@ public class UserController {
         }
     }
 
-
+    @RequestMapping(path = "/user-role/{username}", method = RequestMethod.GET)
+    public String getUserRoleByUsername(@PathVariable String username) {
+        try {
+            String userRole = userDao.getUserRoleByUsername(username);
+            return userRole;
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
+        }
+    }
 }
