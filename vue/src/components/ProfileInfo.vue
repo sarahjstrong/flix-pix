@@ -24,8 +24,7 @@
 
         </div>
         </div>
-        <div class="ticket"><img src="../assets/images/goldticket.png" alt="ticket" width="100"></div>
-        <!-- <div class="ticket2"><img src="../assets/images/goldticket.png" alt="ticket" width="100"></div> -->
+        <div class="ticket"><img src="../assets/images/goldticket.png" alt="ticket" width="110"></div>
 
 </template>
 
