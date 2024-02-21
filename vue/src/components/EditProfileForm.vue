@@ -4,7 +4,6 @@
           <!-- After the form we could have a friends list and save/favorited movies -->
           <h1 style="font-family: 'mont'; margin-left: 10%;">Edit Profile</h1>
       <div class = "form-info-container" >
-
           <div class="form-group">
             <label for="location" >Location: </label>
             <input type="text" id="location" v-model="userEdit.location">
@@ -179,7 +178,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 1rem;
-    font-size: 19px;
+    font-size: xx-large;
 
   }
 
@@ -210,7 +209,7 @@
     .save-btn{
         font-size: 1.2em;
         font-family: 'mont';
-        padding: 5px 10px;
+        padding: 5px 18px;
         background-color: #893222;
         color: #dbbe4b;
         border: none;
@@ -249,11 +248,9 @@
       
       }
 
-      .cancel-btn:hover {
-        background-color: #6d271b;
-        transform: scale(1.2);  
-      }
+      
 
+      
 
         .add-director-btn{  
           font-family: 'mont';

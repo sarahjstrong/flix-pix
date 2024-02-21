@@ -1,5 +1,5 @@
 <template>
-    <h2 style="text-decoration: underline; font-family:'mont';">Friends</h2>
+    <h2 style="text-decoration: underline; font-size: 50px; font-family:'mont';">Friends</h2>
     <div class="friends-list" v-for="(friend, index) of friends" v-bind:key="index">
         <friend-card v-bind:friend="friend"></friend-card>
     </div>

@@ -1,6 +1,6 @@
 <template>
     <div class = "form-info-container">
-    <h2 style="text-decoration: underline; font-family:'mont'; ">Profile</h2>
+    <h2 style="text-decoration: underline; font-family:'mont'; font-size: 50px;">Profile</h2>
     <img src="../assets/images/useravatar.jpg"  alt="User Avatar" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 10px;">
         <div class="user-info">
         <p style="font-family: 'roboto';"><strong>Username:</strong> {{ user.username }}</p>
@@ -21,8 +21,12 @@
         <ul>
           <li v-for="(director, index) in userDirectors" :key='index'>{{ director }}</li>
         </ul>
+
         </div>
         </div>
+        <div class="ticket"><img src="../assets/images/goldticket.png" alt="ticket" width="100"></div>
+        <!-- <div class="ticket2"><img src="../assets/images/goldticket.png" alt="ticket" width="100"></div> -->
+
 </template>
 
 <script>
@@ -96,5 +100,15 @@
 
     .user-info{
         font-size: large;
+    }
+    .ticket {
+        position: absolute;
+        margin-top: 60px;
+        /* bottom: 100px; */
+        margin-left: 42%;      
+    }
+    .ticket2 {
+        position: absolute;
+        top: 80px;
     }
 </style>

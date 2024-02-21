@@ -2,7 +2,7 @@
 
   <!-- To properly make this page items within a flex box, we should make the profile card and profile form separate components that are used in the profile view -->
     <div class="container">
-      <div v-if="!editMode" class="profile-info">
+      <div v-if="!editMode"   class="profile-info">
         <div class="profileShown">
           <profile-info v-if="editMode == false"></profile-info>
           <button class= "edit-btn" @click="editMode = true" >Edit</button>
@@ -11,6 +11,7 @@
       <div v-else class="profile-info">
         <edit-profile-form></edit-profile-form>
         <button class= "close-btn" @click="editMode = false" >Close</button>
+
       </div>
 
     <div class="profile-favs">
@@ -106,6 +107,7 @@
     padding-left: 15vh;
     text-align: center;
     padding-right: 20%;
+    
     }
 
     .profile-friends {
@@ -122,7 +124,7 @@
     }
     
 /* tweaked btn */
-    .edit-btn, .close-btn{
+    .edit-btn{
         font-size: 1.2em;
         font-family: 'mont';
         padding: 5px 10px;
@@ -139,12 +141,29 @@
         overflow: hidden;
         transition: transform 0.3s;
 }
+  .close-btn {
+    margin-left: 10vh;
+    justify-content: center;
+    margin-top: 3%;
+    font-size: 1.2em;
+        font-family: 'mont';
+        padding: 5px 10px;
+        /* margin-left: 13%; */
+        background-color: #893222;
+        color: #dbbe4b;
+        border: none;
+        cursor: pointer;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: transform 0.3s;
 
-.edit-btn:hover {
+  }
+      .close-btn:hover {
         background-color: #6d271b;
         transform: scale(1.2);  
       }
-
-
-    </style>
-    
+      .edit-btn:hover {
+        background-color: #6d271b;
+        transform: scale(1.2);  
+      }
+    </style>  
