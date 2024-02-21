@@ -8,7 +8,7 @@ public interface FriendsDao {
 
     public List<Friends> getAllFriends();
 
-    public List<Integer> getFriendsForUser(int userId);
+    public List<Friends> getFriendsForUser(int userId);
 
     public Friends addFriend(Friends friendsToAdd);
 

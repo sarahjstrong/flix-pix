@@ -21,7 +21,7 @@ public class FriendsController {
     }
 
     @RequestMapping(path = "/friends/{userId}", method = RequestMethod.GET)
-    public List<Integer> getFriendsForUser(@PathVariable int userId) {
+    public List<Friends> getFriendsForUser(@PathVariable int userId) {
         return friendsDao.getFriendsForUser(userId);
     }
 

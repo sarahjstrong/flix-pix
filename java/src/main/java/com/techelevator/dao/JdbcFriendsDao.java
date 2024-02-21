@@ -45,13 +45,14 @@ public class JdbcFriendsDao implements FriendsDao{
 
 
     @Override
-    public List<Integer> getFriendsForUser(int userId) {
-            List<Integer> friendIds = new ArrayList<>();
+    public List<Friends> getFriendsForUser(int userId) {
+            List<Friends> friendIds = new ArrayList<>();
             String sql = "SELECT user_id_2 FROM friends WHERE user_id_1 = ?";
             try {
                 SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
                 while (results.next()) {
-                    friendIds.add(results.getInt("user_id_2"));
+                    Friends friends = mapRowToFriends(results);
+                    friendIds.add(friends);
                 }
             } catch (Exception e) {
                 throw new DaoException("Error retrieving friends for user", e);
