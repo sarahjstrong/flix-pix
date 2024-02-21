@@ -1,7 +1,6 @@
 <template>
   <div id="capstone-app">
 
-
     <!-- Nav -->
     <header id="nav">
       <div class="logo">
@@ -65,6 +64,67 @@
 </script>
 
 <style>
+
+@media screen and (max-width: 600px){
+
+  .all-nav-links{
+    justify-content: center;
+    margin-left: 23%;
+     background-color: #893222;
+    padding-bottom: 5%;
+    margin-top: 10% ;
+    height: 100%;
+    /* border: 2px solid #000000; */
+  }
+  
+  #nav {
+    flex-direction: column; 
+    height: auto;
+  }
+
+  .all-nav-links {
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
+    margin-left: 0;
+    margin-right: 0;
+    padding-bottom: 20px; 
+   /* border: 2px solid #000000; */
+  }
+
+  .right-nav-links {
+    margin-top: 10px; 
+  }
+
+  .nav-link {
+    font-size: 30px; 
+    margin: 10px 0; 
+    border: 2px solid #000000;
+
+  }
+
+  .nav-link.home{
+    font-size: 40px;
+  }
+
+  .nav-link.browse{
+    font-size: 40px;
+  }
+  .nav-link.home:hover
+  {
+    color: #212121;
+    transform: scale(1.2);
+  }
+  .nav-link.browse:hover
+  {
+    color: #212121;
+    transform: scale(1.2);
+  }
+  
+  
+}
+
+
 @font-face {
   font-family: 'mont';
   src: url(./assets/fonts/MontereyFLF.ttf);
@@ -101,8 +161,6 @@ body{
 .right-nav-links{
   display: flex;
 }
-
-
 
 
 .nav-link {

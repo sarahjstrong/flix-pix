@@ -1,5 +1,6 @@
 <template>
 <body>
+    
     <div class="main-img">
         <!-- Image will be of theater or popcorn. Buttons will go over the image and centered -->
         <!-- Adding app name that could be placed over the photo as well, along with a tagline -->
@@ -18,8 +19,8 @@
             </router-link>
         </div>
         <h3 class="tagline-text">Your Favorite Online Pal For Searching For The Next Best Flick For You </h3>
-    </div> 
-</div>
+        </div> 
+    </div>
 </body>
 </template>
 
@@ -40,15 +41,29 @@ export default {
 
 <style scoped>
 
-@media only screen and (max-width: 768px) {
-  .navbar ul {
-    display: none;
+@media screen and (max-width: 500px) {
+
+    .content-container {
+    padding-top: 30%; 
   }
-  .navbar.show-menu ul {
-    display: block;
+
+  .button-container {
+    /* flex-direction: column;  */
+    margin-top: 10px; 
+    /* justify-items: center; */
+
   }
+
+  .tagline-text {
+    text-align: center; 
+    padding-top: 20%;
+    font-size: xx-small;
+
 }
 
+
+
+}
 
     .main-img {
         display: flex;
@@ -142,6 +157,7 @@ export default {
         background-color: #6d271b;
         transform: scale(1.2);
     }
+
 
     
 </style>
