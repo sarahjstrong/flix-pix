@@ -25,7 +25,7 @@ public class UserDirectorController {
     }
 
     @RequestMapping(path = "/user-director/{userId}", method = RequestMethod.GET)
-    public List<String> getDirectorsForUser(@PathVariable int userId) {
+    public List<UserDirector> getDirectorsForUser(@PathVariable int userId) {
         return userDirectorDao.getDirectorsForUser(userId);
     }
 

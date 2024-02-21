@@ -43,18 +43,19 @@ public class JdbcUserDirector implements UserDirectorDao{
     }
 
     @Override
-    public List<String> getDirectorsForUser(int userId) {
-        List<String> directors = new ArrayList<>();
-        String sql = "SELECT director_name FROM user_director WHERE user_id = ?";
+    public List<UserDirector> getDirectorsForUser(int userId) {
+        List<UserDirector> userDirectors = new ArrayList<>();
+        String sql = "SELECT user_director_id, user_id, director_name FROM user_director WHERE user_id = ?";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
             while (results.next()) {
-                directors.add(results.getString("director_name"));
+                UserDirector userDirector = mapRowToUserDirector(results);
+                userDirectors.add(userDirector);
             }
         } catch (Exception e) {
             throw new DaoException("Error retrieving directors for user", e);
         }
-        return directors;
+        return userDirectors;
     }
 
     @Override

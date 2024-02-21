@@ -8,7 +8,7 @@ public interface UserDirectorDao {
 
     public List<UserDirector> getAllUserDirectors();
 
-    public List<String> getDirectorsForUser(int userId);
+    public List<UserDirector> getDirectorsForUser(int userId);
 
     public UserDirector addUserDirector(UserDirector userDirectorToAdd);
 
