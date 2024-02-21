@@ -1,6 +1,6 @@
 <template>
     <div class="recommended-header">
-        <h2>Here are some recommendations based on your favorite genres!</h2>
+        <h2>Recommendations based on your saved genres and directors!</h2>
     </div>
     <div class="movies-list">
         <browse-list v-bind:movies="filteredMovies"></browse-list>
@@ -10,39 +10,78 @@
 <script>
     import BrowseList from '../components/BrowseList.vue';
     import MovieService from '../services/MovieService';
+    import GenreService from '../services/GenreService';
+    import DirectorService from '../services/DirectorService';
 
     export default {
+        data() {
+            return {
+                allMovies: [],
+                targetGenres: [],
+                targetDirectors: []
+            }
+        },
         components: {
             BrowseList
         },
         computed: {
-            movies() {
-                return this.$store.state.movies;
-            },
-            userGenres() {
-                return this.$store.state.genres;
-            },
-            userDirectors() {
-                return this.$store.state.directors;
-            },
             filteredMovies() {
-                let mergedList =[];
-                this.userGenres.forEach(curGenre => {
-                    const moviesForCurGenre = MovieService.getMoviesByGenre(curGenre);
-                    mergedList = mergedList.concat(moviesForCurGenre);
+                const filtered = [];
+                this.allMovies.forEach(movie => {
+                    const director = movie.director.toLowerCase();
+                    const genres = movie.genre.toLowerCase();
+                    let genreMatch = false;
+                    let directorMatch = false;
+
+                    this.targetGenres.forEach(gen => {
+                        if(genres.includes(gen.toLowerCase())) {
+                            genreMatch = true;
+                        }
+                    });
+
+                    this.targetDirectors.forEach(dir => {
+                        if(director.includes(dir.toLowerCase())) {
+                            directorMatch = true;
+                        }
+                    });
+
+                    if(genreMatch === true || directorMatch === true) {
+                        filtered.push(movie);
+                    }
                 });
-
-                this.userDirectors.forEach(curDirector => {
-                    const moviesForCurDirector = MovieService.getMoviesByDirector(curDirector);
-                    mergedList = mergedList.concat(moviesForCurDirector);
-                })
-
-                const favoritedMovies = this.$store.state.favorites;
-                return mergedList.filter(curMovie => {
-                    !favoritedMovies.contains(curMovie);
-                });
-
+                return filtered;
             }
+        },
+
+        created() {
+            MovieService.getMovies().then( response => {
+                if(response.status === 200) {
+                    this.allMovies = response.data;
+                }
+            });
+
+            GenreService.getUserGenres(this.$store.state.user.username).then(response => {
+                if(response.status === 200) {
+                    if(response.data.length > 0) {
+                        this.targetGenres = response.data.map(gen => gen.genre);
+                    }
+                }
+            });
+
+            DirectorService.getAllUserDirectors(this.$store.state.user.id).then(response => {
+                if(response.status === 200) {
+                    if(response.data.length > 0) {
+                        this.targetDirectors = response.data.map(dir => dir.directorName);
+                    }
+                }
+            })
         }
     }
 </script>
+
+<style scoped>
+        h2{
+        color: #dbbe4b;
+        text-align: center;
+    }
+</style>

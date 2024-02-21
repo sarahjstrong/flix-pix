@@ -15,6 +15,7 @@
                 <h1 style="font-family: 'mont';">{{ movie.title }}</h1>
                 <h3>{{ movie.releaseYear }} • Directed by</h3>
                 <h2>{{ movie.director }}</h2>
+                <h4>{{ movie.genre }}</h4>
             </div>
         
 

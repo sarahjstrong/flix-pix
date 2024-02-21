@@ -28,9 +28,13 @@
             <label for="director">Favorite Directors: </label>
             <input type="text" id="director" v-model="directorType">
             <button class="add-director-btn" v-on:click.prevent="addDirector">Add</button>
-            <div class="user-directors" v-for="(director, index) in selectedDirectors" v-bind:key="index">
-                <span><div> {{ director.directorName }} <span>ⓧ</span></div></span>
             </div>
+            {{ selectedDirectors }}
+            {{ toAddDirector }}
+            <div class="user-directors">
+              <div v-for="(director, index) in selectedDirectors" v-bind:key="index">
+                <div class="remove-director" v-on:click="removeDirector(director.directorName)"><span> {{ director.directorName }}&nbsp;</span><span>ⓧ</span></div>
+              </div>
             </div>
           </div>
           <button class="save-btn" style="margin-left: 15%;">Save</button>
@@ -79,16 +83,15 @@
                 selectedDirectors: [],
                 directorType: '',
                 toAddDirector: {
-                  userId: 0,
+                  userId: this.$store.state.user.id,
                   directorName: ''
                 },
             }
         },
         methods: {
             addDirector() {
-              this.toAddDirector.userId = this.$store.state.user.id;
-              this.toAddDirector.directorName = this.directorType;
-              this.directorsToAdd.push(this.toAddDirector);
+              this.selectedDirectors.push({ userId: this.$store.state.user.id, directorName: this.directorType });
+              this.directorType = '';
             },
             saveChanges() {
                 UserService.updateUser(this.userEdit).then( response => {
@@ -123,9 +126,35 @@
                   }
                 });
 
+                this.selectedDirectors.forEach( newDir => {
+                  if(!this.userDirectors.includes(newDir.directorName)) {
+                    this.toAddDirector.directorName = newDir.directorName;
+                    this.toAddDirector.userId = this.$store.state.user.id;
+                    DirectorService.addNewDirector(this.toAddDirector).then( response => {
+                      if(response.status === 201) {
+                        this.userDirectors.push(this.toAddDirector);
+                        this.toAddDirector.directorName = '';
+                      }
+                    });
+                  }
+                });
+
+                this.userDirectors.forEach( curDir => {
+                  if(!this.selectedDirectors.includes(curDir.directorName)) {
+                    DirectorService.deleteDirector(curDir.userDirectorId).then( response => {
+                    });
+                  }
+                });
+
+                this.show = false;
+
 
 
             },
+
+            removeDirector(name) {
+              this.selectedDirectors = this.selectedDirectors.filter(dir => dir.directorName != name);
+            }
         },
         computed: {
 
@@ -178,8 +207,22 @@
     display: flex;
     align-items: center;
     margin-bottom: 1rem;
-    font-size: xx-large;
+    font-size: large;
 
+  }
+
+  .remove-director{
+    cursor: pointer;
+    background-color: white;
+    border-radius: 50px;
+    padding: 6px;
+    outline: 1px solid #893222;
+    margin-right: 7px;
+  }
+
+  .user-directors{
+    display: flex;
+    margin-bottom: 30px;
   }
 
   .form-info-container{

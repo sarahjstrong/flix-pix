@@ -18,9 +18,7 @@
         </ul>
         </div>
         <p style="font-family: 'roboto';"><strong>Favorite Directors:</strong></p>
-        <ul>
-          <li v-for="(director, index) in userDirectors" :key='index'>{{ director }}</li>
-        </ul>
+        <span v-for="(director, index) in directors" v-bind:key="index">{{ director }}&nbsp;&nbsp;&nbsp;</span>
 
         </div>
         </div>

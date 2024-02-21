@@ -129,6 +129,7 @@
         font-family: 'mont';
         padding: 5px 10px;
         margin-left: 13%;
+        margin-top: 20px;
         background-color: #893222;
         color: #dbbe4b;
         border: none;
@@ -145,6 +146,7 @@
     margin-left: 10vh;
     justify-content: center;
     margin-top: 3%;
+    margin-bottom: 0px;
     font-size: 1.2em;
         font-family: 'mont';
         padding: 5px 10px;
