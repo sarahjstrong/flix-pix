@@ -1,15 +1,35 @@
 <template>
     <div>
-        <img src="../assets/images/09049aa9d6e8cb79674ab772702b8c9b.jpg" alt="profile pic placeholder">
-        <h4>{{ friend }}</h4>
+
+            <img src="../assets/images/useravatar.jpg"  alt="User Avatar" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 10px;">
+        <p>{{ user.username }}</p>
     </div>
 </template>
 
 <script>
-
+import UserService from '../services/UserService';
 export default{
-    props: ['friend'],
+    props: ['userId'],
+    data() {
+        return {
+            user: {}
+        }
+    },
+    created(){
+        UserService.getUserById(this.userId).then(response => {
+            if(response.status === 200) {
+                this.user = response.data;
+            }
+        })
+    }
 
 }
 
 </script>
+
+<style scoped>
+    img {
+        cursor: pointer;
+    }
+</style>
+
