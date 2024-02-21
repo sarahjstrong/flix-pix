@@ -2,17 +2,17 @@
     <div class = "form-info-container">
     <h2 style="text-decoration: underline; font-family:'mont'; ">Profile</h2>
     <img src="../assets/images/useravatar.jpg"  alt="User Avatar" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 10px;">
-
         <div class="user-info">
         <p style="font-family: 'roboto';"><strong>Username:</strong> {{ user.username }}</p>
         <div class="user-location">
             <p style="font-family: 'roboto';"><strong>Location: </strong> {{ user.location }}</p>
         </div>
 
-        <p style="font-family: 'roboto';"><strong>About Me:</strong> {{ user.bio }}</p>
+        <p style="font-family: 'roboto';"><strong>About Me:</strong> {{ user.aboutMe }}</p>
 
         <div>
             <p style="font-family: 'roboto';"><strong>Favorite Genres:</strong></p>
+            <span v-for="(genre, index) in genres" v-bind:key="index">{{ genre }}&nbsp;&nbsp;&nbsp;</span>
         <ul>
           <li v-for="genre in userGenres" :key='genre.id'>{{ genre }}</li>
         </ul>
@@ -26,8 +26,17 @@
 </template>
 
 <script>
+    import UserService from '../services/UserService';
+    import GenreService from '../services/GenreService';
+    import DirectorService from '../services/DirectorService';
     export default {
-        props: ['user'],
+        data() {
+            return {
+                user: {},
+                genres: [],
+                directors: [],
+            }
+        },
         computed: {
             userGenres(username) {
                 // Call user-genre service to get list of genres based on userid
@@ -39,6 +48,33 @@
                 return null;
             }
         },
+        created() {
+            UserService.getUserById(this.$store.state.user.id).then( response => {
+              if(response.status === 200) {
+                this.user = response.data;
+              }
+          });
+
+          GenreService.getUserGenres(this.$store.state.user.username).then( response => {
+            if(response.status === 200) {
+                if(response.data.length > 0) {
+                    const userGenres = response.data;
+                    this.genres = userGenres.map( cur => cur.genre);
+                }
+                
+            }
+          });
+
+          DirectorService.getAllUserDirectors(this.$store.state.user.id).then( response => {
+            if(response.status === 200) {
+                if(response.data.length > 0) {
+                    const userDirectors = response.data;
+                    this.directors = userDirectors.map( cur => cur.directorName);
+                }
+            }
+          });
+
+        }
     }
 </script>
 

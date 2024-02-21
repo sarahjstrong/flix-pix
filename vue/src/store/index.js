@@ -48,12 +48,11 @@ export function createStore(currentToken, currentUser) {
       SET_MOVIE_FROM_API(state, movie) {
         state.apiMovie = movie;
       },
-      UPLOAD_USER_DATA(state) {
-        // Call to receive all user data and reassign user (this will include bio, location, etc)
-        // Call receive all fav genres from table
-        // Call to receive all fav directors from table
-        // Call to receive all favorite movie from table
-        // Call to receive all friends from the table
+      UPDATE_USER_DATA(state, updatedUser) {
+        console.log("aaaa");
+        console.log(updatedUser);
+        state.user = updatedUser;
+        console.log(state.user);
       },
       ADD_DIRECTOR(state, directorsToAdd) {
         // Call user-director service to save the directors into database

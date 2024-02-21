@@ -1,17 +1,18 @@
 <template>
-    <form class="profile" v-show="show">
+    <form class="profile" v-show="show" v-on:submit.prevent="saveChanges">
           <!-- I don't think we need the email since it's not in our database. I was thinking we could add a bio section. -->
           <!-- After the form we could have a friends list and save/favorited movies -->
           <h1 style="font-family: 'mont'; margin-left: 10%;">Edit Profile</h1>
       <div class = "form-info-container" >
+
           <div class="form-group">
-            <label for="username" >Username: </label>
-            <input type="text" id="username" v-model="user.username">
+            <label for="location" >Location: </label>
+            <input type="text" id="location" v-model="userEdit.location">
           </div>
 
           <div class="form-group">
-            <label for="bio">Bio: </label>
-            <input type="text" id="bio" v-model="user.bio">
+            <label for="bio">About me: </label>
+            <input type="text" id="bio" v-model="userEdit.aboutMe">
           </div>
 
           <div class="form-group genres">
@@ -26,60 +27,137 @@
 
           <div class="form-group director-section">
             <label for="director">Favorite Directors: </label>
-            <input type="text" id="director" v-model="currentDirector">
-            <button class="add-director-btn" v-on:click="addDirector">Add</button>
-            <div class="user-directors" v-for="(director, index) in userDirectors" v-bind:key="index">
-                <span>{{ director }} | </span>
+            <input type="text" id="director" v-model="directorType">
+            <button class="add-director-btn" v-on:click.prevent="addDirector">Add</button>
+            <div class="user-directors" v-for="(director, index) in selectedDirectors" v-bind:key="index">
+                <span><div> {{ director.directorName }} <span>ⓧ</span></div></span>
             </div>
             </div>
           </div>
-          <button class="save-btn" style="margin-left: 15%;"    @click="saveChanges">Save</button>
-          <button class="cancel-btn"  @click="cancelEdit">Cancel</button>
+          <button class="save-btn" style="margin-left: 15%;">Save</button>
         </form>
+
+        <div v-show="show === false">
+          <h3>Changes saved!</h3>
+        </div>
 </template>
 
 <script>
-
+  import UserService from '../services/UserService'
+  import GenreService from '../services/GenreService'
+  import DirectorService from '../services/DirectorService'
     export default{
         data() {
             return {
-                user: this.$store.state.user,
+                userEdit: {
+                  id: '',
+                  aboutMe: '',
+                  location: ''
+                },
                 show: true,
+                currentGenres: [],
                 selectedGenres: [],
+                userGenres: [],
+                toAddGenre: {
+                  userId: 0,
+                  genre: ''
+                },
                 genres: [
                     { id: 1, name: 'Action' },
                     { id: 2, name: 'Comedy' },
                     { id: 3, name: 'Drama' },
                     { id: 4, name: 'Horror' },
                     { id: 5, name: 'Sci-Fi' },
-                    { id: 6, name: 'Thriller' }
-        ],
-            currentDirector: '',
+                    { id: 6, name: 'Thriller' },
+                    { id: 7, name: 'Crime' },
+                    { id: 8, name: 'Romance' },
+                    { id: 9, name: 'Fantasy' },
+                    { id: 10, name: 'Family' },
+                    { id: 11, name: 'Documentary' },
+                    { id: 12, name: 'Musical' },
+                ],
+                userDirectors: [],
+                selectedDirectors: [],
+                directorType: '',
+                toAddDirector: {
+                  userId: 0,
+                  directorName: ''
+                },
             }
         },
         methods: {
             addDirector() {
-                if(!this.currentDirector === '') {
-                    this.$store.commit('ADD_DIRECTOR', this.currentDirector);
-                }
-                this.currentDirector = '';
+              this.toAddDirector.userId = this.$store.state.user.id;
+              this.toAddDirector.directorName = this.directorType;
+              this.directorsToAdd.push(this.toAddDirector);
             },
             saveChanges() {
-                // Save changes to the backend here
-                // call services to update user and genres table (director is already updated through add button)
-                this.show = false; //exit
-            },
+                UserService.updateUser(this.userEdit).then( response => {
+                  if(response.status === 200) {
+                    this.show = false;
+                  }
+                }).catch(err => {
+                })
 
-            cancelEdit() {
-                // Reset form fields to original values
-                this.show = false; 
-            }
+
+
+                this.selectedGenres.forEach(newGen => {
+                  if(!this.currentGenres.includes(newGen)) {
+                    this.toAddGenre.userId = this.$store.state.user.id;
+                    this.toAddGenre.genre = newGen;
+                    console.log(this.toAddGenre);
+                    GenreService.addNewGenre(this.toAddGenre).then(response => {
+                      if(response.status === 201) {
+                        this.currentGenres.push(newGen);
+                        this.userGenres.push(this.toAddGenre);
+                      }
+                    }).catch(err => {
+
+                    })
+                  }
+                });
+
+                this.userGenres.forEach(curGen => {
+                  if(!this.selectedGenres.includes(curGen.genre)) {
+                    GenreService.deleteGenre(curGen.userGenreId).then(response => {
+                    });
+                  }
+                });
+
+
+
+            },
         },
         computed: {
-            userDirectors() {
-                // Call to user-director service to receive list of all favorited directors
-                return null;
+
+        },
+        created() {
+          UserService.getUserById(this.$store.state.user.id).then( response => {
+              if(response.status === 200) {
+                this.userEdit.id = response.data.id;
+                this.userEdit.location = response.data.location;
+                this.userEdit.aboutMe = response.data.aboutMe;
+              }
+          });
+
+          GenreService.getUserGenres(this.$store.state.user.username).then( response => {
+            if(response.status === 200) {
+                this.userGenres = response.data;
+                this.selectedGenres = this.userGenres.map( cur => cur.genre);
+                this.currentGenres = this.selectedGenres;
             }
+          });
+
+          DirectorService.getAllUserDirectors(this.$store.state.user.id).then( response => {
+            if(response.status === 200) {
+                if(response.data.length > 0) {
+                    const data = response.data;
+                    this.userDirectors = data;
+                    this.selectedDirectors = data;
+                }
+            }
+          });
+
         }
     }
 

@@ -4,12 +4,13 @@
     <div class="container">
       <div v-if="!editMode" class="profile-info">
         <div class="profileShown">
-          <profile-info v-bind:user="this.$store.state.user"></profile-info>
+          <profile-info v-if="editMode == false"></profile-info>
           <button class= "edit-btn" @click="editMode = true" >Edit</button>
         </div>
       </div>
       <div v-else class="profile-info">
         <edit-profile-form></edit-profile-form>
+        <button class= "close-btn" @click="editMode = false" >Close</button>
       </div>
 
     <div class="profile-favs">
@@ -121,7 +122,7 @@
     }
     
 /* tweaked btn */
-    .edit-btn{
+    .edit-btn, .close-btn{
         font-size: 1.2em;
         font-family: 'mont';
         padding: 5px 10px;
