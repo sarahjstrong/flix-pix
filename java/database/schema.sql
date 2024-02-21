@@ -8,7 +8,7 @@ BEGIN TRANSACTION;
 		password_hash VARCHAR(200) NOT NULL,
 		role VARCHAR(50) NOT NULL,
 		location TEXT,
-		about_me VARCHAR(250),
+		about_me VARCHAR(1000),
 		CONSTRAINT PK_user PRIMARY KEY (user_id)
 	);
 
