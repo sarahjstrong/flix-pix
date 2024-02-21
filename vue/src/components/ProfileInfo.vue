@@ -1,7 +1,7 @@
 <template>
     <div class = "form-info-container">
-    <h2 style="text-decoration: underline; font-family:'mont'; font-size: 50px;">Profile</h2>
-    <img src="../assets/images/useravatar.jpg"  alt="User Avatar" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 10px;">
+        <h1 style="font-family: 'mont';">Profile</h1>
+    <img src="../assets/images/useravatar.jpg"  alt="User Avatar" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 10px; border: 2px solid #893222">
         <div class="user-info">
         <p style="font-family: 'roboto';"><strong>Username:</strong> {{ user.username }}</p>
         <div class="user-location">

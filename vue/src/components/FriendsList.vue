@@ -1,6 +1,17 @@
 <template>
-    <div class="container">
-        <div class="search-area">
+    <div class="friend-info-container">
+        <h1 style="font-family: 'mont';">Friends</h1>
+        <div class="friend-list">
+            <div v-for="(friend, index) in friendsList" v-bind:key="index">
+                <div class="friend-card">
+                    <friend-card v-bind:userId="friend.userId2"></friend-card>
+                </div>
+                
+            </div>
+            
+        </div>
+
+        <div>
             <button v-show="activeSearch === false" class="add-friend-btn" v-on:click="activeSearch = true">Add Friend</button>
             <div class="response-messages">
                 <p v-show="showSuccess">User added!</p>
@@ -8,18 +19,12 @@
             </div>
             <div class="active-search" v-show="activeSearch === true">
                 <input class="search-bar" type="text" name="friend-search" id="friend-search" placeholder="Search username" v-model="searchName">
-                <button class="add-btn" v-on:click="addFriend">Add</button>
-                <button class="cancel-search" v-on:click="cancelSearch">Cancel</button>
+                <button class="search-btn" v-on:click="addFriend">Add</button>
+                <button class="search-btn" v-on:click="cancelSearch">Cancel</button>
             </div>
         </div>
-
-        <div class="friend-list">
-            Hello
-            <div v-for="(friend, index) in friendsList" v-bind:key="index">
-                <friend-card v-bind:userId="friend.userId2"></friend-card>
-            </div>
+        
             
-        </div>
     </div>
 </template>
 
@@ -88,8 +93,69 @@
 </script>
 
 <style scoped>
+
+.friend-info-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
     .active-search{
         display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .friend-list{
+        display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+        margin-top: 30px;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .friend-card{
+
+    }
+
+    .add-friend-btn{
+
+        font-size: 1.2em;
+        font-family: 'mont';
+        padding: 5px 10px;
+        margin-top: 20px;
+        background-color: #893222;
+        color: #dbbe4b;
+        border: none;
+        cursor: pointer;
+        border-radius: 50px;
+        outline: none;
+        cursor: pointer;
+        position: relative;
+        /* box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.1); */
+        overflow: hidden;
+        transition: transform 0.3s;
+        width: 20%;
+    }
+
+    input {
+        width: 200px;
+        height: 30px;
+        font-size: 16px;
+        margin-left: 10px;
+        background-color: #ffffff
+    }
+
+    .search-btn{
+        font-family: 'mont';
+        background-color: #893222;
+        color: #dbbe4b;
+        height: 36px;
+        /* border-radius: 20px; */
+        outline: none;
+        cursor: pointer;
+    
+        overflow: hidden;
     }
 
 
