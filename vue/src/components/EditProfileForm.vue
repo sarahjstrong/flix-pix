@@ -29,8 +29,6 @@
             <input type="text" id="director" v-model="directorType">
             <button class="add-director-btn" v-on:click.prevent="addDirector">Add</button>
             </div>
-            {{ selectedDirectors }}
-            {{ toAddDirector }}
             <div class="user-directors">
               <div v-for="(director, index) in selectedDirectors" v-bind:key="index">
                 <div class="remove-director" v-on:click="removeDirector(director.directorName)"><span> {{ director.directorName }}&nbsp;</span><span>ⓧ</span></div>
